@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('faq_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('faq_id')->constrained()->onDelete('cascade');
-            $table->string('locale', 5);
-            $table->string('question', 1000);
-            $table->text('answer');
+            $table->string('locale', 5)->nullable(false);
+            $table->string('question', 1000)->nullable(false);
+            $table->text('answer')->nullable(false);
             $table->timestamps();
 
             $table->unique(['faq_id', 'locale']);

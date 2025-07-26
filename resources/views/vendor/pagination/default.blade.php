@@ -12,6 +12,7 @@
         background: white;
         border: 1px solid #d1d5db;
         color: #374151;
+        text-decoration: none;
         padding: 0.5rem 0.75rem;
         border-radius: 6px;
         cursor: pointer;

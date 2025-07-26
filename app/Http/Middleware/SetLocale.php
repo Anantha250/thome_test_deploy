@@ -20,8 +20,8 @@ class SetLocale
     public function handle(Request $request, Closure $next)
     {
         // $locale = $request->cookie('locale', 'en'); // Default to 'en' if cookie not se
-        $locale = $request->session()->get('locale', 'en'); // Default to 'en' if session not set
-        
+        // $locale = $request->session()->get('locale', 'en'); // Default to 'en' if session not set
+        $locale = $request->cookie('locale', 'en');
         if ($locale && in_array($locale, ['en', 'th'])) {
             App::setLocale($locale);
         } else {

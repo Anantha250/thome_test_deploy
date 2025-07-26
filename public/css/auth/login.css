@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'fc-sound';
+    src: url('/fonts/FC_Sound_Fontset/OTF_Files/FCSound-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'fc-sound-bold';
+    src: url('/fonts/FC_Sound_Fontset/OTF_Files/FCSound-Bold.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'fc-sound', sans-serif;
+    box-sizing: border-box !important;
+}
+
+strong {
+    font-family: 'fc-sound-bold', sans-serif !important;
+}
+body {
+    background-color: #f8f9fa;
+    /* สีพื้นหลังเทาอ่อนๆ จาก Bootstrap */
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}

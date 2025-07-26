@@ -25,35 +25,6 @@ document.querySelectorAll(".line").forEach((el) => {
     );
 });
 
-// Carousel functionality
-let currentSlide = 0;
-const slideWidth = 320; // Width of each slide + margin
-const slidesPerView =
-    window.innerWidth > 768 ? 3 : window.innerWidth > 576 ? 2 : 1;
-const slider = document.getElementById("videoSlider");
-const slides = document.querySelectorAll(".video-item");
-const totalSlides = slides.length;
-
-// Function to move the carousel
-function moveSlide(direction) {
-    currentSlide = Math.max(
-        0,
-        Math.min(currentSlide + direction, totalSlides - slidesPerView)
-    );
-    slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-
-    // Add smooth animation effect
-    slider.style.transition = "transform 0.5s ease-in-out";
-}
-
-document.querySelector(".prev").addEventListener("click", () => {
-    moveSlide(-1);
-});
-
-document.querySelector(".next").addEventListener("click", () => {
-    moveSlide(1);
-});
-
 // Copy link functionality
 document.querySelectorAll(".copy-link").forEach((el) => {
     el.addEventListener("click", () => {
@@ -65,31 +36,11 @@ document.querySelectorAll(".copy-link").forEach((el) => {
     });
 });
 
-document.querySelector(".btn-rec").addEventListener("click", () => {
-    // window.open("/HOMESPECTOR/Homepage/articles.php", "_blank")
-    location.href = "/HOMESPECTOR/Homepage/articles.php";
-});
 document.querySelector(".btn-review").addEventListener("click", () => {
     window.open(
         "https://www.facebook.com/t.homeinspector/reviews?locale=th_TH",
         "_blank"
     );
-
-    // location.href = "https://www.facebook.com/t.homeinspector/reviews?locale=th_TH"
-});
-document.querySelector(".btn-contact").addEventListener("click", () => {
-    location.href = "/HOMESPECTOR/Homepage/Contactus.php";
-});
-
-// Responsive handling
-window.addEventListener("resize", () => {
-    const newSlidesPerView =
-        window.innerWidth > 768 ? 3 : window.innerWidth > 576 ? 2 : 1;
-    if (newSlidesPerView !== slidesPerView) {
-        // Recalculate current slide position
-        currentSlide = Math.min(currentSlide, totalSlides - newSlidesPerView);
-        slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    }
 });
 
 // Add image zoom functionality
@@ -198,10 +149,151 @@ if (articleContent) {
     const wordCount = text.split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / 200); // Average reading speed: 200 words per minute
 
-    const readingTimeElement = document.createElement("div");
-    readingTimeElement.className = "reading-time";
-    readingTimeElement.innerHTML = `<i class="bi bi-clock"></i> เวลาในการอ่านโดยประมาณ: ${readingTime} นาที`;
+    const readingTimeElement = document.querySelector(".reading-time span");
+    readingTimeElement.innerText = `${readingTime}`;
 
-    const artHeader = document.querySelector(".art-cover-img");
-    artHeader.appendChild(readingTimeElement);
+    // const artHeader = document.querySelector(".art-cover-img");
+    // artHeader.appendChild(readingTimeElement);
 }
+
+class ResponsiveCarousel {
+    constructor() {
+        this.wrapper = document.getElementById("carouselWrapper");
+        this.prevBtn = document.getElementById("prevBtn");
+        this.nextBtn = document.getElementById("nextBtn");
+        this.dotsContainer = document.getElementById("dotsContainer");
+        this.items = document.querySelectorAll(".article-carousel-item");
+
+        this.currentIndex = 0;
+        this.itemsPerView = this.getItemsPerView();
+        this.totalSlides = Math.ceil(this.items.length / this.itemsPerView);
+
+        this.init();
+        this.setupEventListeners();
+    }
+
+    getItemsPerView() {
+        if (window.innerWidth <= 576) return 1;
+        else if (window.innerWidth <= 992) return 2;
+        return 3;
+    }
+
+    init() {
+        this.createDots();
+        this.updateCarousel();
+        this.updateButtons();
+    }
+
+    createDots() {
+        this.dotsContainer.innerHTML = "";
+        for (let i = 0; i < this.totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.className = "dot";
+            dot.addEventListener("click", () => this.goToSlide(i));
+            this.dotsContainer.appendChild(dot);
+        }
+    }
+
+    updateCarousel() {
+        const translateX = -(this.currentIndex * (100 / this.itemsPerView));
+        this.wrapper.style.transform = `translateX(${translateX}%)`;
+
+        // Update dots
+        document.querySelectorAll(".dot").forEach((dot, index) => {
+            dot.classList.toggle("active", index === this.currentIndex);
+        });
+    }
+
+    updateButtons() {
+        this.prevBtn.disabled = this.currentIndex === 0;
+        this.nextBtn.disabled = this.currentIndex >= this.totalSlides - 1;
+    }
+
+    goToSlide(index) {
+        this.currentIndex = Math.max(0, Math.min(index, this.totalSlides - 1));
+        this.updateCarousel();
+        this.updateButtons();
+    }
+
+    next() {
+        if (this.currentIndex < this.totalSlides - 1) {
+            this.currentIndex++;
+            this.updateCarousel();
+            this.updateButtons();
+        }
+    }
+
+    prev() {
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.updateCarousel();
+            this.updateButtons();
+        }
+    }
+
+    handleResize() {
+        const newItemsPerView = this.getItemsPerView();
+        if (newItemsPerView !== this.itemsPerView) {
+            this.itemsPerView = newItemsPerView;
+            this.totalSlides = Math.ceil(this.items.length / this.itemsPerView);
+            this.currentIndex = Math.min(
+                this.currentIndex,
+                this.totalSlides - 1
+            );
+            this.createDots();
+            this.updateCarousel();
+            this.updateButtons();
+        }
+    }
+
+    setupEventListeners() {
+        this.nextBtn.addEventListener("click", () => this.next());
+        this.prevBtn.addEventListener("click", () => this.prev());
+
+        window.addEventListener("resize", () => this.handleResize());
+
+        // Touch/swipe support
+        let startX = 0;
+        let isDragging = false;
+
+        this.wrapper.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        this.wrapper.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+
+        this.wrapper.addEventListener("touchend", (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    this.next();
+                } else {
+                    this.prev();
+                }
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                this.prev();
+            } else if (e.key === "ArrowRight") {
+                this.next();
+            }
+        });
+    }
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    new ResponsiveCarousel();
+});

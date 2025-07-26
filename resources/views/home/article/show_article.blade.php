@@ -1,17 +1,21 @@
-@extends('component.layout  ')
+@extends('layouts.layout_home')
 
 @section('content')
     <link rel="stylesheet" href="/css/home/article/test_article.css">
     <main>
         <div class="art-header">
-            {{-- <h1>{{$locale}}</h1> --}}
+            <div class="art-track-area mb-4">
+                <a href="/">{{ __('article.breadcrumb-home') }}</a> >
+                <a href="/article">{{ __('article.breadcrumb-article') }}</a> >
+                <a href="/article/detail?news_id={{ $article['id'] }}">{{ $article['translation']['title'] }}</a>
+            </div>
             <h1 class="art-name">{{ $article['translation']['title'] }}</h1>
             <div class="art-name-below">
                 <div class="art-tag-container">
                     @foreach ($article->tags as $tag)
-                        <div class="art-tag">
+                        <a class="art-tag" href="/article?tag={{ $tag['name'] }}">
                             {{ $tag['name'] }}
-                        </div>
+                        </a>
                     @endforeach
                 </div>
                 <div class="social-share" style="display: flex; gap: 4px;">
@@ -43,72 +47,76 @@
                 </div>
             </div>
 
-
             <div class="art-cover-img">
                 <img src="{{ $article['translation']['coverPageImg'] }}" alt="">
                 <div class="art-date">
-                    {{ \Carbon\Carbon::parse($article['created_at'])->locale(app()->getLocale())->isoFormat('D MMM YYYY h:mm') }} 
-                        {{-- $article['created_at']->format('d M Y H:i') --}}
-                    {{-- 14 พ.ค. 2568 13:44 น --}}
-                    {{-- {{print_r($article, true)}} --}}
+                    {{ \Carbon\Carbon::parse($article['created_at'])->locale(app()->getLocale())->isoFormat('D MMM YYYY h:mm') }}
+                </div>
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i>
+                    {{ __('article.reading-time-label') }}: <span></span> {{ __('article.minutes') }}
                 </div>
             </div>
         </div>
         <div class="art-body">
             <div class="art-content">
                 {!! $article['translation']['content'] !!}
+
+                <div>
+                    {{ __('article.hashtag-label') }}
+                    @foreach ($article['hashtags'] as $hashtag)
+                        <span class="art-hashtag">
+                            #{{ $hashtag }}
+                        </span>
+                    @endforeach
+                </div>
             </div>
             <div class="art-promote">
                 <div class="card">
-                    <h5 class="card-title">บทความยอดนิยม</h5>
+                    <h5 class="card-title">{{ __('article.latest-articles-title') }}</h5>
                     <div class="card-content">
-                        <div class="rec-article">
-                            <img src="/img/articles_releted.jpg" alt="บทความยอดนิยม 1" class="rec-article-image">
-                            <div>
-                                <h4 class="rec-article-title">
-                                    <a href="#">ซื้อบ้านใหม่ ติดเครื่องทำน้ำอุ่นยังไง</a>
-                                </h4>
-                                <p class="rec-article-date">10 พฤษภาคม 2025</p>
-                            </div>
-                        </div>
-                        <div class="rec-article">
-                            <img src="/img/ev-charger.jpg" alt="บทความยอดนิยม 1" class="rec-article-image">
-                            <div>
-                                <h4 class="rec-article-title">
-                                    <a href="#">สิ่งที่ต้องรู้เกี่ยวกับ EV Charger</a>
-                                </h4>
-                                <p class="rec-article-date">10 พฤษภาคม 2025</p>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-outline btn-sm btn-full btn-rec">ดูบทความทั้งหมด</button>
+                        @foreach ($latest_articles as $latest_article)
+                            <a class="rec-article" href="/article/detail?news_id={{ $latest_article->id }}">
+                                <img src="{{ $latest_article->translation->coverPageImg }}"
+                                    alt="{{ $latest_article->translation->title }}" class="rec-article-image">
+                                <div>
+                                    <h4 class="rec-article-title">
+                                        <span
+                                            href="/article/detail?news_id={{ $latest_article->id }}">{{ $latest_article->translation->title }}</span>
+                                    </h4>
+                                    <p class="rec-article-date">
+                                        {{ \Carbon\Carbon::parse($latest_article->created_at)->locale(app()->getLocale())->isoFormat('D MMMM YYYY') }}
+                                    </p>
+                                </div>
+                            </a>
+                        @endforeach
+                        <a class="btn btn-outline btn-sm btn-full" href="/article">{{ __('article.see-all-articles') }}</a>
                     </div>
                 </div>
 
                 <!-- รีวิวจากลูกค้า -->
                 <div class="card">
-                    <h5 class="card-title">รีวิวจากลูกค้า</h5>
+                    <h5 class="card-title">{{ __('article.customer-reviews-title') }}</h5>
                     <div class="card-content">
                         <div class="review">
                             <p class="review-text">
-                                "ทีมงานและเครื่องมือพร้อม ตรวจสอบละเอียด เจ้าหน้าที่ให้คำแนะนำ ดีมากค่ะ"
+                                "{{ __('article.review1-text') }}"
                             </p>
-                            <p class="review-author">- คุณลียะกิตติพร</p>
+                            <p class="review-author">- {{ __('article.review1-author') }}</p>
                         </div>
                         <div class="review">
                             <p class="review-text">
-                                "ดีใจที่เลือกใช้บริการของ ต ตรวจบ้านครับ ให้คำแนะนำดีมาก ตรวจละเอียด
-                                อุปกรณ์ในการตรวจครบครับ 🙂"
+                                "{{ __('article.review2-text') }}"
                             </p>
-                            <p class="review-author">- คุณ Chaiyapond</p>
+                            <p class="review-author">- {{ __('article.review2-author') }}</p>
                         </div>
-                        <button class="btn btn-outline btn-sm btn-full btn-review">ดูรีวิวทั้งหมด</button>
+                        <button class="btn btn-outline btn-sm btn-full btn-review">{{ __('article.see-all-reviews') }}</button>
                     </div>
                 </div>
 
                 <!-- ติดต่อเรา -->
                 <div class="card">
-                    <h5 class="card-title">ติดต่อเรา</h5>
+                    <h5 class="card-title">{{ __('article.contact-title') }}</h5>
                     <div class="card-content">
                         <div class="contact-item">
                             <svg class="icon contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -128,12 +136,12 @@
                             </svg>
                             <span class="contact-text">Info@thomeinspector.com</span>
                         </div>
-                        <button class="btn btn-full mt-2 btn-contact btn-outline-primary">ติดต่อเรา</button>
+                        <a href="/contactus" class="btn btn-full mt-2 btn-contact btn-outline-primary">{{ __('article.contact-btn') }}</a>
                     </div>
                 </div>
             </div>
             <div class="art-share-tail">
-                <h3>Share Article</h3>
+                <h3>{{ __('article.share-article-title') }}</h3>
                 <div class="social-share" style="display: flex;">
                     <a class="facebook" target="_blank">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/2048px-2023_Facebook_icon.svg.png"
@@ -164,52 +172,30 @@
             </div>
         </div>
 
-
-
-        <section class="carousel-content" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-            <h2>บทความอื่น</h2>
-            <div class="video-carousel aos-init" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                <button class="prev">❮</button>
-                <div class="video-wrapper" id="videoSlider">
-                    <!-- <div class="video-item">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/M-nLhplc-mc?si=cXWxjwDwR4Tk84WZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                </div> -->
-                    <a class="content-carousel-item video-item" href="/articles_view3">
-                        <img src="https://www.thomeinspector.com/assets/upload/newsThumbnail/b764dd4c5037789dd95efac895cfbac14aa2a041.jpg"
-                            alt="Content 1">
-                        <div class="content-carousel-info">
-                            <h3>เราต่างจากที่อื่นอย่างไร What Makes US Different?<i
-                                    class="fa-solid fa-circle-arrow-right"></i></h3>
-                        </div>
-                    </a>
-                    <a class="content-carousel-item video-item" href="/articles_view3">
-                        <img src="https://www.thomeinspector.com/assets/upload/newsThumbnail/b764dd4c5037789dd95efac895cfbac14aa2a041.jpg"
-                            alt="Content 1">
-                        <div class="content-carousel-info">
-                            <h3>เราต่างจากที่อื่นอย่างไร What Makes US Different?<i
-                                    class="fa-solid fa-circle-arrow-right"></i></h3>
-                        </div>
-                    </a>
-                    <a class="content-carousel-item video-item" href="/articles_view3">
-                        <img src="https://www.thomeinspector.com/assets/upload/newsThumbnail/b764dd4c5037789dd95efac895cfbac14aa2a041.jpg"
-                            alt="Content 1">
-                        <div class="content-carousel-info">
-                            <h3>เราต่างจากที่อื่นอย่างไร What Makes US Different?<i
-                                    class="fa-solid fa-circle-arrow-right"></i></h3>
-                        </div>
-                    </a>
-                    <a class="content-carousel-item video-item" href="/articles_view3">
-                        <img src="https://www.thomeinspector.com/assets/upload/newsThumbnail/b764dd4c5037789dd95efac895cfbac14aa2a041.jpg"
-                            alt="Content 1">
-                        <div class="content-carousel-info">
-                            <h3>เราต่างจากที่อื่นอย่างไร What Makes US Different?<i
-                                    class="fa-solid fa-circle-arrow-right"></i></h3>
-                        </div>
-                    </a>
+        <section class="article-section">
+            <h2 class="article-section-title">{{ __('article.other-articles-title') }}</h2>
+            <div class="article-carousel-container">
+                <div class="article-carousel-inner">
+                    <div class="article-carousel-wrapper" id="carouselWrapper">
+                        @foreach ($related_articles as $related_article)
+                            <div class="article-carousel-item">
+                                <div class="article-card">
+                                    <img class="article-card-image"
+                                        src="{{ $related_article->translation->coverPageImg }}"
+                                        alt="{{ $related_article->translation->title }}">
+                                    <div class="article-card-content">
+                                        <h3 class="article-card-title"> {{ $related_article->translation->title }} </h3>
+                                        <a href="/article/detail?news_id={{ $related_article->id }}" class="read-more">{{ __('article.read-more') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <button class="next">❯</button>
+                <button class="article-nav-button prev" id="prevBtn">‹</button>
+                <button class="article-nav-button next" id="nextBtn">›</button>
             </div>
-
+            <div class="dots-container" id="dotsContainer"></div>
         </section>
     </main>
     <script src='/js/home/article/test_article.js'></script>

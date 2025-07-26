@@ -1,4 +1,4 @@
-@extends('component.layout_admin')
+@extends('layouts.layout_admin')
 
 @section('content')
     <div class="container">
@@ -6,8 +6,7 @@
     </div>
     {{-- <img src="/storage/1Wdly9ELxVF3NtyIsVicTDRkTp0ClwriQ2imGkZ5.png" alt=""> --}}
     <div>
-        <input type="file" id="thai-cover" accept="image/*" class="articleCoverImage thai form-control"
-                        required>
+        <input type="file" id="thai-cover" accept="image/*" class="articleCoverImage thai form-control" required>
         <button id="submit">submit</button>
     </div>
 

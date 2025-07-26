@@ -1,4 +1,4 @@
-@extends('component.layout')
+@extends('layouts.layout_home')
 
 @section('content')
     <!-- Font Awesome -->
@@ -13,8 +13,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-content item-1">
                     <h1>Coming Soon!</h1>
-                    <p>บริการดูแลบ้านระดับพรีเมียม ที่จะทำให้ชีวิตคุณสะดวกสบายยิ่งขึ้น
-                        ด้วยทีมงานมืออาชีพที่พร้อมให้บริการตลอด 24 ชั่วโมง</p>
+                    <p>{{ __('hbutler.hbutler_sub') }}</p>
                     <div class="hero-buttons">
                         <a href="#services" class="btn-custom btn-primary-custom">
                             <span>ค้นหาบริการอื่น</span>

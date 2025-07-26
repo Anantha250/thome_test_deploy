@@ -20,7 +20,7 @@ ArticleWithTag
 
 
 Project
-- 
+-
 
 ReviewHome
 ReviewHomeTranslate
@@ -41,3 +41,27 @@ FaqTranslate
 UserAdmin
 - username
 - password
+
+
+
+Staff
+- ชื่อ
+- นามสกุล
+- email
+- department
+- position
+
+Staff Translate
+
+
+department
+- id
+
+Department Translate
+- id
+- locale
+- name
+
+StaffWithDepartment
+- staffId
+- departmentId

@@ -17,12 +17,12 @@ export function createTagSelector(containerId, artTags = [], tagInputName = 'ห
 
     // Available options
     let options = [...artTags];
-    
+
     // DOM elements
     const tagContainer = document.getElementById(`${containerId}-tagContainer`);
     const tagInput = document.getElementById(`${containerId}-tagInput`);
     const optionsContainer = document.getElementById(`${containerId}-optionsContainer`);
-    
+
     let selectedTags = [];
     let customTags = new Set();
 

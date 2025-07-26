@@ -187,6 +187,22 @@
             gap: 0.75rem;
         }
 
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .category-a { background: #fef3c7; color: #92400e; }
+        .category-b { background: #fecaca; color: #991b1b; }
+        .category-c { background: #dbeafe; color: #1e40af; }
+        .category-d { background: #d1fae5; color: #065f46; }
+
         .feature-grid {
             display: grid;
             gap: 1rem;
@@ -203,6 +219,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            position: relative;
         }
 
         .feature-item:hover {
@@ -244,6 +261,32 @@
             box-shadow: 0 0 0 2px rgb(102 126 234 / 0.1);
         }
 
+        .feature-item select {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .weight-indicator {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
         .btn {
             background: var(--bg-gradient);
             color: white;
@@ -274,6 +317,40 @@
         .btn-full {
             width: 100%;
             margin-top: 2rem;
+        }
+
+        .rating-display {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .rating-score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .rating-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .rating-category-score {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .table-container {
@@ -437,7 +514,7 @@
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-home"></i> ระบบจัดการบ้าน</h1>
-            <p>ระบบแอดมินสำหรับจัดการข้อมูลบ้านอย่างครอบคลุมและทันสมัย</p>
+            <p>ระบบแอดมินสำหรับจัดการข้อมูลบ้านอย่างครอบคลุมและทันสมัย พร้อมระบบให้คะแนนแบบถ่วงน้ำหนัก</p>
         </div>
 
         <div class="main-content">
@@ -467,6 +544,43 @@
                         <i class="fas fa-brain"></i> Smart Home
                     </div>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ $houses->avg('price') ? number_format($houses->avg('price'), 0) : '0' }}</span>
+                    <div class="stat-label">
+                        <i class="fas fa-money-bill-wave"></i> ราคาเฉลี่ย (บาท)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating System Info -->
+            <div class="card fade-in">
+                <div class="card-header">
+                    <h2><i class="fas fa-star"></i> ระบบให้คะแนนแบบถ่วงน้ำหนัก</h2>
+                </div>
+                <div class="card-body">
+                    <div class="rating-breakdown">
+                        <div class="rating-category">
+                            <div class="category-badge category-a">A - โครงสร้าง</div>
+                            <div class="rating-category-score">45%</div>
+                            <p>ความแข็งแรงและโครงสร้างพื้นฐาน</p>
+                        </div>
+                        <div class="rating-category">
+                            <div class="category-badge category-b">B - ความปลอดภัย</div>
+                            <div class="rating-category-score">35%</div>
+                            <p>ระบบรักษาความปลอดภัยและป้องกัน</p>
+                        </div>
+                        <div class="rating-category">
+                            <div class="category-badge category-c">C - ความสะดวกสบาย</div>
+                            <div class="rating-category-score">15%</div>
+                            <p>สิ่งอำนวยความสะดวกและความสบาย</p>
+                        </div>
+                        <div class="rating-category">
+                            <div class="category-badge category-d">D - เทคโนโลยี</div>
+                            <div class="rating-category-score">5%</div>
+                            <p>เทคโนโลยีสมัยใหม่และนวัตกรรม</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Add House Form -->
@@ -482,7 +596,31 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.houses.store') }}" enctype="multipart/form-data">
+                    <!-- Real-time Rating Display -->
+                    <div class="rating-display" id="ratingDisplay" style="display: none;">
+                        <div class="rating-score" id="totalScore">0</div>
+                        <div>คะแนนรวม / 100</div>
+                        <div class="rating-breakdown">
+                            <div class="rating-category">
+                                <div class="category-badge category-a">โครงสร้าง</div>
+                                <div class="rating-category-score" id="structureScore">0</div>
+                            </div>
+                            <div class="rating-category">
+                                <div class="category-badge category-b">ความปลอดภัย</div>
+                                <div class="rating-category-score" id="safetyScore">0</div>
+                            </div>
+                            <div class="rating-category">
+                                <div class="category-badge category-c">ความสะดวกสบาย</div>
+                                <div class="rating-category-score" id="comfortScore">0</div>
+                            </div>
+                            <div class="rating-category">
+                                <div class="category-badge category-d">เทคโนโลยี</div>
+                                <div class="rating-category-score" id="technologyScore">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST" action="{{ route('admin.houses.store') }}" enctype="multipart/form-data" id="houseForm">
                         @csrf
                         
                         <!-- Basic Information -->
@@ -491,6 +629,13 @@
                                 <label><i class="fas fa-tag"></i> ชื่อบ้าน</label>
                                 <input type="text" name="name" placeholder="ชื่อบ้าน" required value="{{ old('name') }}">
                                 @error('name')
+                                    <span style="color: var(--error-color); font-size: 0.875rem;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-money-bill-wave"></i> ราคาบ้าน (บาท)</label>
+                                <input type="number" name="price" placeholder="ราคาบ้าน" required min="0" step="1000" value="{{ old('price') }}">
+                                @error('price')
                                     <span style="color: var(--error-color); font-size: 0.875rem;">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -573,9 +718,130 @@
                             @enderror
                         </div>
 
-                        <!-- Sanitation System -->
+                        <!-- Structure Category (A - 45%) -->
                         <h3 class="section-title">
-                            <i class="fas fa-tint"></i> ระบบสุขาภิบาล
+                            <i class="fas fa-building"></i> โครงสร้าง (A)
+                            <span class="category-badge category-a">45% น้ำหนัก</span>
+                        </h3>
+                        <div class="feature-grid">
+                            <div class="feature-item" data-category="A" data-weight="45">
+                                <div class="weight-indicator">45</div>
+                                <label><input type="checkbox" name="has_electric_meter" value="1" {{ old('has_electric_meter') ? 'checked' : '' }}> มิเตอร์ไฟฟ้า</label>
+                                <input type="text" name="electric_meter_spec" placeholder="รายละเอียดมิเตอร์ไฟฟ้า" value="{{ old('electric_meter_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="A" data-weight="30">
+                                <div class="weight-indicator">30</div>
+                                <label><input type="checkbox" name="has_main_breaker" value="1" {{ old('has_main_breaker') ? 'checked' : '' }}> เมนเบรกเกอร์</label>
+                                <input type="text" name="main_breaker_spec" placeholder="รายละเอียดเมนเบรกเกอร์" value="{{ old('main_breaker_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="A" data-weight="25">
+                                <div class="weight-indicator">25</div>
+                                <label><input type="checkbox" name="has_water_tank" value="1" {{ old('has_water_tank') ? 'checked' : '' }}> ถังเก็บน้ำ</label>
+                                <input type="text" name="water_tank_spec" placeholder="รายละเอียดถังเก็บน้ำ" value="{{ old('water_tank_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="A" data-weight="20">
+                                <div class="weight-indicator">20</div>
+                                <label>โครงสร้างผนัง</label>
+                                <select name="wall_structure" data-weights='{"ก่ออิฐมวลเบา": 60, "precast": 40}'>
+                                    <option value="">เลือกประเภท</option>
+                                    <option value="ก่ออิฐมวลเบา" {{ old('wall_structure') == 'ก่ออิฐมวลเบา' ? 'selected' : '' }}>ก่ออิฐมวลเบา (60%)</option>
+                                    <option value="precast" {{ old('wall_structure') == 'precast' ? 'selected' : '' }}>Precast (40%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Safety Category (B - 35%) -->
+                        <h3 class="section-title">
+                            <i class="fas fa-shield-alt"></i> ความปลอดภัย (B)
+                            <span class="category-badge category-b">35% น้ำหนัก</span>
+                        </h3>
+                        <div class="feature-grid">
+                            <div class="feature-item" data-category="B" data-weight="35">
+                                <div class="weight-indicator">35</div>
+                                <label><input type="checkbox" name="has_rcd" value="1" {{ old('has_rcd') ? 'checked' : '' }}> ระบบ RCD</label>
+                                <input type="text" name="rcd_spec" placeholder="รายละเอียดระบบ RCD" value="{{ old('rcd_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="B" data-weight="25">
+                                <div class="weight-indicator">25</div>
+                                <label><input type="checkbox" name="has_smoke_detector" value="1" {{ old('has_smoke_detector') ? 'checked' : '' }}> Smoke Detector</label>
+                                <input type="text" name="smoke_detector_spec" placeholder="รายละเอียด Smoke Detector" value="{{ old('smoke_detector_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="B" data-weight="25">
+                                <div class="weight-indicator">25</div>
+                                <label><input type="checkbox" name="has_heat_detector" value="1" {{ old('has_heat_detector') ? 'checked' : '' }}> Heat Detector</label>
+                                <input type="text" name="heat_detector_spec" placeholder="รายละเอียด Heat Detector" value="{{ old('heat_detector_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="B" data-weight="20">
+                                <div class="weight-indicator">20</div>
+                                <label><input type="checkbox" name="has_security_home_system" value="1" {{ old('has_security_home_system') ? 'checked' : '' }}> ระบบรักษาความปลอดภัย</label>
+                                <input type="text" name="security_home_system_spec" placeholder="รายละเอียดระบบรักษาความปลอดภัย" value="{{ old('security_home_system_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="B" data-weight="15">
+                                <div class="weight-indicator">15</div>
+                                <label><input type="checkbox" name="has_cctv_camera" value="1" {{ old('has_cctv_camera') ? 'checked' : '' }}> CCTV</label>
+                                <input type="text" name="cctv_camera_spec" placeholder="รายละเอียด CCTV" value="{{ old('cctv_camera_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="B" data-weight="10">
+                                <div class="weight-indicator">10</div>
+                                <label><input type="checkbox" name="has_emergency_light" value="1" {{ old('has_emergency_light') ? 'checked' : '' }}> ไฟฉุกเฉิน</label>
+                                <input type="text" name="emergency_light_spec" placeholder="รายละเอียดไฟฉุกเฉิน" value="{{ old('emergency_light_spec') }}">
+                            </div>
+                        </div>
+
+                        <!-- Comfort Category (C - 15%) -->
+                        <h3 class="section-title">
+                            <i class="fas fa-couch"></i> ความสะดวกสบาย (C)
+                            <span class="category-badge category-c">15% น้ำหนัก</span>
+                        </h3>
+                        <div class="feature-grid">
+                            <div class="feature-item" data-category="C" data-weight="15">
+                                <div class="weight-indicator">15</div>
+                                <label><input type="checkbox" name="has_door_automatic" value="1" {{ old('has_door_automatic') ? 'checked' : '' }}> ประตูอัตโนมัติ</label>
+                                <input type="text" name="door_automatic_spec" placeholder="รายละเอียดประตูอัตโนมัติ" value="{{ old('door_automatic_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="C" data-weight="10">
+                                <div class="weight-indicator">10</div>
+                                <label><input type="checkbox" name="has_garage_door" value="1" {{ old('has_garage_door') ? 'checked' : '' }}> ประตูโรงรถอัตโนมัติ</label>
+                                <input type="text" name="garage_door_spec" placeholder="รายละเอียดประตูโรงรถอัตโนมัติ" value="{{ old('garage_door_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="C" data-weight="8">
+                                <div class="weight-indicator">8</div>
+                                <label><input type="checkbox" name="has_door_bell" value="1" {{ old('has_door_bell') ? 'checked' : '' }}> กริ่งประตู</label>
+                                <input type="text" name="door_bell_spec" placeholder="รายละเอียดกริ่งประตู" value="{{ old('door_bell_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="C" data-weight="7">
+                                <div class="weight-indicator">7</div>
+                                <label><input type="checkbox" name="has_water_pump" value="1" {{ old('has_water_pump') ? 'checked' : '' }}> ปั๊มน้ำ</label>
+                                <input type="text" name="water_pump_spec" placeholder="รายละเอียดปั๊มน้ำ" value="{{ old('water_pump_spec') }}">
+                            </div>
+                        </div>
+
+                        <!-- Technology Category (D - 5%) -->
+                        <h3 class="section-title">
+                            <i class="fas fa-microchip"></i> เทคโนโลยี (D)
+                            <span class="category-badge category-d">5% น้ำหนัก</span>
+                        </h3>
+                        <div class="feature-grid">
+                            <div class="feature-item" data-category="D" data-weight="5">
+                                <div class="weight-indicator">5</div>
+                                <label><input type="checkbox" name="has_ev_charger" value="1" {{ old('has_ev_charger') ? 'checked' : '' }}> EV Charger</label>
+                                <input type="text" name="ev_charger_spec" placeholder="รายละเอียด EV Charger" value="{{ old('ev_charger_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="D" data-weight="3">
+                                <div class="weight-indicator">3</div>
+                                <label><input type="checkbox" name="has_smart_home" value="1" {{ old('has_smart_home') ? 'checked' : '' }}> ระบบ Smart Home</label>
+                                <input type="text" name="smart_home_spec" placeholder="รายละเอียดระบบ Smart Home" value="{{ old('smart_home_spec') }}">
+                            </div>
+                            <div class="feature-item" data-category="D" data-weight="2">
+                                <div class="weight-indicator">2</div>
+                                <label><input type="checkbox" name="has_solar_roof" value="1" {{ old('has_solar_roof') ? 'checked' : '' }}> Solar Roof</label>
+                                <input type="text" name="solar_roof_spec" placeholder="รายละเอียด Solar Roof" value="{{ old('solar_roof_spec') }}">
+                            </div>
+                        </div>
+
+                        <!-- Additional Systems -->
+                        <h3 class="section-title">
+                            <i class="fas fa-tools"></i> ระบบเสริม
                         </h3>
                         <div class="feature-grid">
                             <div class="feature-item">
@@ -591,27 +857,8 @@
                                 <input type="text" name="grase_trap_spec" placeholder="รายละเอียดบ่อดักไขมัน" value="{{ old('grase_trap_spec') }}">
                             </div>
                             <div class="feature-item">
-                                <label><input type="checkbox" name="has_water_tank" value="1" {{ old('has_water_tank') ? 'checked' : '' }}> ถังเก็บน้ำ</label>
-                                <input type="text" name="water_tank_spec" placeholder="รายละเอียดถังเก็บน้ำ" value="{{ old('water_tank_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_water_pump" value="1" {{ old('has_water_pump') ? 'checked' : '' }}> ปั๊มน้ำ</label>
-                                <input type="text" name="water_pump_spec" placeholder="รายละเอียดปั๊มน้ำ" value="{{ old('water_pump_spec') }}">
-                            </div>
-                            <div class="feature-item">
                                 <label><input type="checkbox" name="has_pipe_termites" value="1" {{ old('has_pipe_termites') ? 'checked' : '' }}> ท่อกำจัดปลวก</label>
                                 <input type="text" name="pipe_termites_spec" placeholder="รายละเอียดท่อกำจัดปลวก" value="{{ old('pipe_termites_spec') }}">
-                            </div>
-                        </div>
-
-                        <!-- Roofing System -->
-                        <h3 class="section-title">
-                            <i class="fas fa-home"></i> ระบบหลังคา
-                        </h3>
-                        <div class="feature-grid">
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_solar_roof" value="1" {{ old('has_solar_roof') ? 'checked' : '' }}> Solar Roof</label>
-                                <input type="text" name="solar_roof_spec" placeholder="รายละเอียด Solar Roof" value="{{ old('solar_roof_spec') }}">
                             </div>
                             <div class="feature-item">
                                 <label><input type="checkbox" name="has_insulation" value="1" {{ old('has_insulation') ? 'checked' : '' }}> ฉนวนกันความร้อน</label>
@@ -620,25 +867,6 @@
                             <div class="feature-item">
                                 <label><input type="checkbox" name="has_roof_ventilator" value="1" {{ old('has_roof_ventilator') ? 'checked' : '' }}> พัดลมระบายอากาศ</label>
                                 <input type="text" name="roof_ventilator_spec" placeholder="รายละเอียดพัดลมระบายอากาศ" value="{{ old('roof_ventilator_spec') }}">
-                            </div>
-                        </div>
-
-                        <!-- Electrical System -->
-                        <h3 class="section-title">
-                            <i class="fas fa-bolt"></i> ระบบไฟฟ้า
-                        </h3>
-                        <div class="feature-grid">
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_electric_meter" value="1" {{ old('has_electric_meter') ? 'checked' : '' }}> มิเตอร์ไฟฟ้า</label>
-                                <input type="text" name="electric_meter_spec" placeholder="รายละเอียดมิเตอร์ไฟฟ้า" value="{{ old('electric_meter_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_main_breaker" value="1" {{ old('has_main_breaker') ? 'checked' : '' }}> เมนเบรกเกอร์</label>
-                                <input type="text" name="main_breaker_spec" placeholder="รายละเอียดเมนเบรกเกอร์" value="{{ old('main_breaker_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_rcd" value="1" {{ old('has_rcd') ? 'checked' : '' }}> ระบบ RCD</label>
-                                <input type="text" name="rcd_spec" placeholder="รายละเอียดระบบ RCD" value="{{ old('rcd_spec') }}">
                             </div>
                             <div class="feature-item">
                                 <label><input type="checkbox" name="has_rcd_1st" value="1" {{ old('has_rcd_1st') ? 'checked' : '' }}> RCD ชั้น 1</label>
@@ -649,48 +877,8 @@
                                 <input type="text" name="rcd_2nd_spec" placeholder="รายละเอียด RCD ชั้น 2" value="{{ old('rcd_2nd_spec') }}">
                             </div>
                             <div class="feature-item">
-                                <label><input type="checkbox" name="has_ev_charger" value="1" {{ old('has_ev_charger') ? 'checked' : '' }}> EV Charger</label>
-                                <input type="text" name="ev_charger_spec" placeholder="รายละเอียด EV Charger" value="{{ old('ev_charger_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_emergency_light" value="1" {{ old('has_emergency_light') ? 'checked' : '' }}> ไฟฉุกเฉิน</label>
-                                <input type="text" name="emergency_light_spec" placeholder="รายละเอียดไฟฉุกเฉิน" value="{{ old('emergency_light_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_door_automatic" value="1" {{ old('has_door_automatic') ? 'checked' : '' }}> ประตูอัตโนมัติ</label>
-                                <input type="text" name="door_automatic_spec" placeholder="รายละเอียดประตูอัตโนมัติ" value="{{ old('door_automatic_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_smoke_detector" value="1" {{ old('has_smoke_detector') ? 'checked' : '' }}> Smoke Detector</label>
-                                <input type="text" name="smoke_detector_spec" placeholder="รายละเอียด Smoke Detector" value="{{ old('smoke_detector_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_heat_detector" value="1" {{ old('has_heat_detector') ? 'checked' : '' }}> Heat Detector</label>
-                                <input type="text" name="heat_detector_spec" placeholder="รายละเอียด Heat Detector" value="{{ old('heat_detector_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_smart_home" value="1" {{ old('has_smart_home') ? 'checked' : '' }}> ระบบ Smart Home</label>
-                                <input type="text" name="smart_home_spec" placeholder="รายละเอียดระบบ Smart Home" value="{{ old('smart_home_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_security_home_system" value="1" {{ old('has_security_home_system') ? 'checked' : '' }}> ระบบรักษาความปลอดภัย</label>
-                                <input type="text" name="security_home_system_spec" placeholder="รายละเอียดระบบรักษาความปลอดภัย" value="{{ old('security_home_system_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_cctv_camera" value="1" {{ old('has_cctv_camera') ? 'checked' : '' }}> CCTV</label>
-                                <input type="text" name="cctv_camera_spec" placeholder="รายละเอียด CCTV" value="{{ old('cctv_camera_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_door_bell" value="1" {{ old('has_door_bell') ? 'checked' : '' }}> กริ่งประตู</label>
-                                <input type="text" name="door_bell_spec" placeholder="รายละเอียดกริ่งประตู" value="{{ old('door_bell_spec') }}">
-                            </div>
-                            <div class="feature-item">
                                 <label><input type="checkbox" name="has_plug_switch" value="1" {{ old('has_plug_switch') ? 'checked' : '' }}> ปลั๊กและสวิตช์</label>
                                 <input type="text" name="plug_switch_spec" placeholder="รายละเอียดปลั๊กและสวิตช์" value="{{ old('plug_switch_spec') }}">
-                            </div>
-                            <div class="feature-item">
-                                <label><input type="checkbox" name="has_garage_door" value="1" {{ old('has_garage_door') ? 'checked' : '' }}> ประตูโรงรถอัตโนมัติ</label>
-                                <input type="text" name="garage_door_spec" placeholder="รายละเอียดประตูโรงรถอัตโนมัติ" value="{{ old('garage_door_spec') }}">
                             </div>
                         </div>
 
@@ -713,6 +901,8 @@
                                 <thead>
                                     <tr>
                                         <th><i class="fas fa-tag"></i> ชื่อบ้าน</th>
+                                        <th><i class="fas fa-star"></i> คะแนนรวม</th>
+                                        <th><i class="fas fa-money-bill-wave"></i> ราคา</th>
                                         <th><i class="fas fa-bed"></i> ห้องนอน</th>
                                         <th><i class="fas fa-bath"></i> ห้องน้ำ</th>
                                         <th><i class="fas fa-ruler-combined"></i> พื้นที่</th>
@@ -721,7 +911,6 @@
                                         <th><i class="fas fa-building"></i> ประเภท</th>
                                         <th><i class="fas fa-layer-group"></i> ชั้น</th>
                                         <th><i class="fas fa-calendar-alt"></i> ปีที่สร้าง</th>
-                                        <th><i class="fas fa-map-signs"></i> สถานที่ใกล้เคียง</th>
                                         <th><i class="fas fa-camera"></i> รูปภาพ</th>
                                     </tr>
                                 </thead>
@@ -729,6 +918,16 @@
                                     @foreach($houses as $house)
                                     <tr>
                                         <td>{{ $house->name }}</td>
+                                        <td>
+                                            <span style="font-weight: 600; color: var(--primary-color);">
+                                                {{ $house->total_score ?? 0 }}/100
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span style="font-weight: 600; color: var(--success-color);">
+                                                {{ number_format($house->price ?? 0) }} บาท
+                                            </span>
+                                        </td>
                                         <td>{{ $house->bedrooms }}</td>
                                         <td>{{ $house->bathrooms }}</td>
                                         <td>{{ $house->area }} ตร.ม.</td>
@@ -737,13 +936,6 @@
                                         <td>{{ $house->type ?? '-' }}</td>
                                         <td>{{ $house->floors ?? '-' }}</td>
                                         <td>{{ $house->year_built ?? '-' }}</td>
-                                        <td>
-                                            @if($house->nearby_places)
-                                                {!! nl2br(e($house->nearby_places)) !!}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
                                         <td>
                                             @if ($house->image)
                                                 <img src="{{ asset('image/' . $house->image) }}" alt="House image">
@@ -769,6 +961,76 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Rating calculation system
+            const ratingWeights = {
+                'A': 0.45, // Structure - 45%
+                'B': 0.35, // Safety - 35%
+                'C': 0.15, // Comfort - 15%
+                'D': 0.05  // Technology - 5%
+            };
+
+            function calculateRating() {
+                let categoryScores = { A: 0, B: 0, C: 0, D: 0 };
+                let categoryMaxScores = { A: 0, B: 0, C: 0, D: 0 };
+
+                // Calculate scores for each category
+                document.querySelectorAll('.feature-item[data-category]').forEach(item => {
+                    const category = item.dataset.category;
+                    const weight = parseInt(item.dataset.weight);
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    const select = item.querySelector('select');
+
+                    categoryMaxScores[category] += weight;
+
+                    if (checkbox && checkbox.checked) {
+                        categoryScores[category] += weight;
+                    } else if (select && select.value) {
+                        // Handle weighted selections (like wall structure)
+                        const weights = JSON.parse(select.dataset.weights || '{}');
+                        const selectedWeight = weights[select.value] || 100;
+                        categoryScores[category] += (weight * selectedWeight / 100);
+                    }
+                });
+
+                // Calculate final weighted scores
+                let totalScore = 0;
+                let displayScores = {};
+
+                Object.keys(categoryScores).forEach(category => {
+                    if (categoryMaxScores[category] > 0) {
+                        const categoryPercentage = (categoryScores[category] / categoryMaxScores[category]) * 100;
+                        const weightedScore = categoryPercentage * ratingWeights[category];
+                        totalScore += weightedScore;
+                        displayScores[category] = Math.round(weightedScore * 10) / 10;
+                    } else {
+                        displayScores[category] = 0;
+                    }
+                });
+
+                // Update display
+                updateRatingDisplay(Math.round(totalScore * 10) / 10, displayScores);
+            }
+
+            function updateRatingDisplay(totalScore, categoryScores) {
+                const ratingDisplay = document.getElementById('ratingDisplay');
+                const totalScoreElement = document.getElementById('totalScore');
+                const structureScoreElement = document.getElementById('structureScore');
+                const safetyScoreElement = document.getElementById('safetyScore');
+                const comfortScoreElement = document.getElementById('comfortScore');
+                const technologyScoreElement = document.getElementById('technologyScore');
+
+                if (totalScore > 0) {
+                    ratingDisplay.style.display = 'block';
+                    totalScoreElement.textContent = totalScore;
+                    structureScoreElement.textContent = categoryScores.A || 0;
+                    safetyScoreElement.textContent = categoryScores.B || 0;
+                    comfortScoreElement.textContent = categoryScores.C || 0;
+                    technologyScoreElement.textContent = categoryScores.D || 0;
+                } else {
+                    ratingDisplay.style.display = 'none';
+                }
+            }
+
             // Enhanced checkbox interactions
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
@@ -781,7 +1043,14 @@
                             textInput.value = '';
                         }
                     }
+                    calculateRating();
                 });
+            });
+
+            // Handle select changes for weighted options
+            const selects = document.querySelectorAll('select[data-weights]');
+            selects.forEach(select => {
+                select.addEventListener('change', calculateRating);
             });
 
             // Initialize checkbox states
@@ -792,6 +1061,9 @@
                     textInput.style.opacity = checkbox.checked ? '1' : '0.5';
                 }
             });
+
+            // Initial rating calculation
+            calculateRating();
 
             // Form validation enhancements
             const inputs = document.querySelectorAll('input[required]');

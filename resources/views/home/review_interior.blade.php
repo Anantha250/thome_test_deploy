@@ -11,7 +11,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="/CSS/Review-home.css">
+    <link rel="stylesheet" href="/CSS/review_home.css">
     <title>Header Design</title>
 </head>
 
@@ -100,7 +100,7 @@
                             </ul>
                         </li>
                         <li><a href="/Homepage/articles.php" data-translate="nav.articles">บทความ</a></li>
-                        <li><a href="/Homepage/Review-home.php" data-translate="nav.reviewHome">รีวิวบ้าน</a></li>
+                        <li><a href="/Homepage/review_home.php" data-translate="nav.reviewHome">รีวิวบ้าน</a></li>
                         <li><a href="/Homepage/review_interior.php"
                                 data-translate="nav.reviewInterior">บริการตกแต่งภายใน</a></li>
                         <li><a href="/Homepage/joinwithus.php" data-translate="nav.joinUs">รวมงานกับเรา</a>
@@ -197,7 +197,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="/Homepage/articles.php" data-translate="nav.articles">บทความ</a></li>
-                                <li><a href="/Homepage/Review-home.php" data-translate="nav.reviewHome">รีวิวบ้าน</a>
+                                <li><a href="/Homepage/review_home.php" data-translate="nav.reviewHome">รีวิวบ้าน</a>
                                 </li>
                                 <li><a href="/Homepage/review_interior.php"
                                         data-translate="nav.reviewInterior">บริการตกแต่งภายใน</a></li>
@@ -464,7 +464,7 @@
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=homespector', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
+
                 // Fetch company details
                 $stmt = $pdo->prepare('SELECT * FROM contact_info LIMIT 1');
                 $stmt->execute();

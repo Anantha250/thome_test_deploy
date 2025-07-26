@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Noto+Sans+Thai:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
-
 :root {
     --background-color: #ffffff;
     --font-color: #0e0d0d;
@@ -8,23 +5,9 @@
     --navborder-color: #ea0303;
     --seconadry-color: #3ec8ff;
     --font2-color: #006ac0;
-    --font3-color:#002d5b;
+    --font3-color: #002d5b;
 }
 
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Noto Sans Thai", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    background-color: #fdfbfd;
-    font-weight: normal;
-}
 
 .top-bar {
     width: 100%;
@@ -331,6 +314,7 @@ header {
         height: 80px;
     }
 }
+
 /* Responsive for tablets (max-width: 1024px) */
 @media (max-width: 1024px) {
     .navbar {
@@ -355,7 +339,7 @@ header {
         background-color: white;
         padding: 10px 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: none; 
+        display: none;
     }
 
     .nav-links.active {
@@ -377,6 +361,7 @@ header {
         font-size: 16px;
         padding: 10px 15px;
     }
+
     #hamburger-icon {
         display: block;
         font-size: 22px;
@@ -569,15 +554,17 @@ header {
 
 .menu-link {
     text-decoration: none;
-    color:var(--font3-color);
+    color: var(--font3-color);
     transition: color 0.3s ease;
 }
 
 .menu-link:hover {
     color: var(--hover-color);
 }
+
 /* Hide search and language switcher by default on mobile */
 @media (max-width: 768px) {
+
     .language-switcher,
     .search-bar {
         display: none;
@@ -695,6 +682,11 @@ header {
     gap: 10px;
 }
 
+.categories a {
+    text-decoration: none;
+    color: black;
+}
+
 .category-btn {
     background-color: #f1f1f1;
     border: none;
@@ -714,14 +706,7 @@ header {
     background-color: #ddd;
 }
 
-/* .review-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    text-decoration: none;
-}
-
+/*
 .card {
     width: 300px;
     background-color: #fff;
@@ -760,14 +745,6 @@ header {
 
 /* new */
 /* Review Cards Container */
-.review-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    text-decoration: none;
-    padding: 20px;
-}
 
 /* Individual Card Styling */
 .card {
@@ -793,26 +770,22 @@ header {
 
 /* Card Text */
 .card p {
-    padding: 10px;
-    font-size: 14px;
+    padding: 10px 10px 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
     color: #333;
+    text-align: left;
     transition: color 0.3s ease-in-out;
 }
 
 /* Upload Date */
-.upload-date {
-    display: block;
-    margin-top: 5px;
-    font-size: 16px;
-    color: #888;
-    text-align: right;
-    padding: 5px;
-}
+
 
 
 /* Dark Overlay Effect Using ::before */
 .card::before {
-    content: "ดูเพิ่มเติม";  /* "View More" in Thai */
+    content: "ดูเพิ่มเติม";
+    /* "View More" in Thai */
     font-size: 18px;
     color: white;
     font-weight: bold;
@@ -866,11 +839,6 @@ header {
 }
 
 @media (max-width: 768px) {
-    .review-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .card {
         width: 90%;
     }
@@ -1179,6 +1147,7 @@ header {
         width: 140px;
     }
 }
+
 /* for tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
     .footer-container {
@@ -1199,7 +1168,7 @@ header {
     .footer-center,
     .footer-right,
     .footer-help {
-        flex: 1 1 calc(33.33% - 20px); 
+        flex: 1 1 calc(33.33% - 20px);
         max-width: 33.33%;
         text-align: left;
     }
@@ -1296,5 +1265,85 @@ header {
 
     .payment-logos img:hover {
         transform: scale(1.1);
+    }
+}
+
+
+/*  */
+.review-cards {
+    display: flex;
+    gap: 50px 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+}
+
+
+
+.new-card {
+    width: 30%;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: left;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.new-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.new-card img {
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.new-card a {
+    text-decoration: none;
+    color: inherit;
+    height: fit-content;
+}
+
+.new-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-left: 5px;
+}
+
+.new-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: 5px;
+}
+
+.new-card-tags a {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.upload-date {
+    color: #888;
+    margin-left: 5px;
+}
+
+@media (max-width: 968px) {
+    .new-card {
+        width: 45%;
     }
 }

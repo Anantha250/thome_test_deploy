@@ -1,1 +1,1 @@
-@extends('component.layout')
+@extends('layouts.layout_home')

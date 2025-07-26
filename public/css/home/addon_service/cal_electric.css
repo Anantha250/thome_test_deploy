@@ -355,7 +355,7 @@ header {
         background-color: white;
         padding: 10px 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: none; 
+        display: none;
     }
 
     .nav-links.active {
@@ -730,7 +730,7 @@ body {
 .cal-item h2 i {
     margin-right: 10px;
     color: var(--font2-color);
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .cal-item p {
@@ -743,7 +743,7 @@ body {
 .cal-item p i {
     margin-right: 10px;
     color: var(--font2-color);
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .cal-iframe {
@@ -751,7 +751,7 @@ body {
     height: 800px;
     border: none;
     border-radius: 8px;
-    display: block; 
+    display: block;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
@@ -1361,7 +1361,7 @@ body {
     .footer-center,
     .footer-right,
     .footer-help {
-        flex: 1 1 calc(33.33% - 20px); 
+        flex: 1 1 calc(33.33% - 20px);
         max-width: 33.33%;
         text-align: left;
     }

@@ -20,6 +20,7 @@ class HouseController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             'name' => 'required',
+            'price' => 'required|numeric|min:0',
             'bedrooms' => 'required|integer',
             'bathrooms' => 'required|integer',
             'area' => 'required|integer',
@@ -31,7 +32,7 @@ class HouseController extends Controller
             'nearby_places' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:10000',
 
-            // สุขาภิบาล
+            // ส่วนของสุขาภิบาล, หลังคา, ไฟฟ้า, สมาร์ทโฮม (รวมจากทั้งสอง Controller)
             'has_septic_tank' => 'nullable|boolean',
             'septic_tank_spec' => 'nullable|string',
             'has_order_trap' => 'nullable|boolean',
@@ -45,7 +46,6 @@ class HouseController extends Controller
             'has_pipe_termites' => 'nullable|boolean',
             'pipe_termites_spec' => 'nullable|string',
 
-            // หลังคา
             'has_solar_roof' => 'nullable|boolean',
             'solar_roof_spec' => 'nullable|string',
             'has_insulation' => 'nullable|boolean',
@@ -53,7 +53,6 @@ class HouseController extends Controller
             'has_roof_ventilator' => 'nullable|boolean',
             'roof_ventilator_spec' => 'nullable|string',
 
-            // ไฟฟ้า
             'has_electric_meter' => 'nullable|boolean',
             'electric_meter_spec' => 'nullable|string',
             'has_main_breaker' => 'nullable|boolean',
@@ -75,7 +74,6 @@ class HouseController extends Controller
             'has_heat_detector' => 'nullable|boolean',
             'heat_detector_spec' => 'nullable|string',
 
-            // สมาร์ทโฮม & ความปลอดภัย
             'has_smart_home' => 'nullable|boolean',
             'smart_home_spec' => 'nullable|string',
             'has_security_home_system' => 'nullable|boolean',
@@ -88,6 +86,8 @@ class HouseController extends Controller
             'plug_switch_spec' => 'nullable|string',
             'has_garage_door' => 'nullable|boolean',
             'garage_door_spec' => 'nullable|string',
+
+            'wall_structure' => 'nullable|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -96,8 +96,13 @@ class HouseController extends Controller
             $validated['image'] = $imageName;
         }
 
-        House::create($validated);
-        return redirect()->route('admin.compare.compare_house')->with('success', 'เพิ่มบ้านเรียบร้อยแล้ว');
+        $house = House::create($validated);
+
+        // ✅ คำนวณคะแนนและบันทึก
+        $house->total_score = $this->calculateHouseRating($house);
+        $house->save();
+
+        return redirect()->route('admin.compare.compare_house')->with('success', 'เพิ่มบ้านเรียบร้อยแล้ว คะแนนรวม: ' . $house->total_score . '/100');
     }
 
     public function adminView(){
@@ -105,21 +110,30 @@ class HouseController extends Controller
         return view('admin.compare.compare_house', compact('houses'));
     }
 
-    public function comparisonView(Request $request){
+    public function comparisonView(Request $request)
+    {
         $houseIds = $request->get('houses');
+
         if (!$houseIds) {
-            return redirect()->route('houses.compare')->with('error', 'ไม่พบข้อมูลบ้านที่ต้องการเปรียบเทียบ');
+            return redirect()->route('admin.compare.compare_frontend')->with('error', 'ไม่พบข้อมูลบ้านที่ต้องการเปรียบเทียบ');
         }
 
         $ids = explode(',', $houseIds);
         $houses = House::whereIn('id', $ids)->get();
-        
+
         if ($houses->count() < 2) {
-            return redirect()->route('houses.compare')->with('error', 'กรุณาเลือกบ้านอย่างน้อย 2 หลังเพื่อเปรียบเทียบ');
+            return redirect()->route('admin.compare.compare_frontend')->with('error', 'กรุณาเลือกบ้านอย่างน้อย 2 หลังเพื่อเปรียบเทียบ');
         }
 
         return view('admin.compare.comparison', compact('houses'));
     }
+
+    public function compareFrontend()
+    {
+        $houses = House::all();
+        return view('admin.compare.compare_frontend', compact('houses'));
+    }
+
 
     public function apiIndex() {
         $houses = House::all()->map(function ($house) {
@@ -132,5 +146,73 @@ class HouseController extends Controller
 
     public function apiShow($id) {
         return House::findOrFail($id);
+    }
+
+    private function calculateHouseRating($house)
+    {
+        $categoryWeights = [
+            'A' => 0.45,
+            'B' => 0.35,
+            'C' => 0.15,
+            'D' => 0.05
+        ];
+
+        $itemWeights = [
+            'has_electric_meter' => ['category' => 'A', 'weight' => 45],
+            'has_main_breaker' => ['category' => 'A', 'weight' => 30],
+            'has_water_tank' => ['category' => 'A', 'weight' => 25],
+            'wall_structure' => ['category' => 'A', 'weight' => 20],
+
+            'has_rcd' => ['category' => 'B', 'weight' => 35],
+            'has_smoke_detector' => ['category' => 'B', 'weight' => 25],
+            'has_heat_detector' => ['category' => 'B', 'weight' => 25],
+            'has_security_home_system' => ['category' => 'B', 'weight' => 20],
+            'has_cctv_camera' => ['category' => 'B', 'weight' => 15],
+            'has_emergency_light' => ['category' => 'B', 'weight' => 10],
+
+            'has_door_automatic' => ['category' => 'C', 'weight' => 15],
+            'has_garage_door' => ['category' => 'C', 'weight' => 10],
+            'has_door_bell' => ['category' => 'C', 'weight' => 8],
+            'has_water_pump' => ['category' => 'C', 'weight' => 7],
+
+            'has_ev_charger' => ['category' => 'D', 'weight' => 5],
+            'has_smart_home' => ['category' => 'D', 'weight' => 3],
+            'has_solar_roof' => ['category' => 'D', 'weight' => 2],
+        ];
+
+        $wallStructureWeights = [
+            'ก่ออิฐมวลเบา' => 0.6,
+            'precast' => 0.4
+        ];
+
+        $categoryScores = ['A' => 0, 'B' => 0, 'C' => 0, 'D' => 0];
+        $categoryMaxScores = ['A' => 0, 'B' => 0, 'C' => 0, 'D' => 0];
+
+        foreach ($itemWeights as $field => $config) {
+            $category = $config['category'];
+            $weight = $config['weight'];
+            $categoryMaxScores[$category] += $weight;
+
+            if ($field === 'wall_structure') {
+                if ($house->wall_structure && isset($wallStructureWeights[$house->wall_structure])) {
+                    $categoryScores[$category] += $weight * $wallStructureWeights[$house->wall_structure];
+                }
+            } else {
+                if ($house->$field) {
+                    $categoryScores[$category] += $weight;
+                }
+            }
+        }
+
+        $totalScore = 0;
+        foreach ($categoryScores as $category => $score) {
+            if ($categoryMaxScores[$category] > 0) {
+                $categoryPercentage = ($score / $categoryMaxScores[$category]) * 100;
+                $weightedScore = $categoryPercentage * $categoryWeights[$category];
+                $totalScore += $weightedScore;
+            }
+        }
+
+        return round($totalScore, 1);
     }
 }

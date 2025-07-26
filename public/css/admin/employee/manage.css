@@ -1,0 +1,196 @@
+.free-card {
+    background-color: white;
+}
+
+.card,
+.free-card {
+    width: 25%;
+    border-radius: 10px;
+}
+
+.free-card {
+    border: 3px dashed black;
+    background-color: rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.free-card a, .no-move a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: gray;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.free-card a:hover {
+    color: black;
+    scale: 1.05;
+}
+
+
+.cover-image-input {
+    position: relative;
+}
+
+.cover-image-input div {
+    display: flex;
+    column-gap: 20px;
+}
+
+.cover-image-input input[type="file"] {
+    padding: 8px;
+    border: 1px dashed #d1d5db;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    flex: 4;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.cover-image-input input[type="file"]:hover {
+    border-color: #6366f1;
+}
+
+.cover-image-input button {
+    flex: 1;
+    padding: 0px 4px;
+}
+
+.content {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+}
+
+
+/* box order */
+.center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.free-block {
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: white !important;
+    border-style: dashed !important;
+}
+
+.block-container {
+    width: 60%;
+    max-width: 1200px;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.block {
+    background-color: #e0f2f7;
+    /* สีฟ้าอ่อน */
+    border: 1px solid #b2ebf2;
+    /* ขอบสีฟ้า */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: grab;
+    /* เปลี่ยน cursor เป็นรูปมือจับ */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Transition สำหรับการเคลื่อนที่ของบล็อกอื่นๆ (ถ้ามีการใช้) */
+    transition: transform 0.3s ease;
+}
+
+.block:last-child {
+    margin-bottom: 0;
+    /* บล็อกสุดท้ายไม่มี margin-bottom */
+}
+
+/* Style สำหรับบล็อกที่กำลังถูกลาก */
+.block.dragging {
+    opacity: 0.7;
+    /* ทำให้จางลงเล็กน้อย */
+    cursor: grabbing;
+    /* เปลี่ยน cursor เป็นรูปมือกำลังจับ */
+    position: absolute;
+    /* สำคัญ: ทำให้บล็อกลอยขึ้นมา */
+    z-index: 1000;
+    /* ให้อยู่ด้านบนสุด */
+    pointer-events: none;
+    /* ป้องกันการคลิกหรือ hover บนบล็อกที่กำลังลาก */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Style สำหรับ placeholder (บล็อก Ghost) */
+.block.placeholder {
+    background-color: #e6e6e6;
+    /* สีเทาอ่อน */
+    border: 1px dashed #aaaaaa;
+    /* ขอบเส้นประ */
+    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+    /* ทำให้การแสดงผลดูเนียนขึ้น */
+    height: 60px;
+    /* กำหนดความสูงเริ่มต้นของ placeholder */
+    margin-bottom: 10px;
+    /* ให้มี margin เท่าบล็อกปกติ */
+    visibility: visible;
+    /* ทำให้มองเห็นได้ */
+}
+
+/* Placeholder ที่หายไปจาก DOM flow ชั่วคราว */
+.block.hidden-placeholder {
+    /* ใช้ชื่อนี้เพื่อความชัดเจน อาจจะซ้ำกับตัวเก่า */
+    height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.align-right {
+    display: flex;
+    justify-content: right;
+}
+
+
+.no-move {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    cursor: default !important;
+    background-color: rgba(0, 0, 0, 0.03);
+    /* pointer-events: click !important; */
+}
+
+.no-move a {
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.no-move a:hover {
+    scale: 1.2 !important;
+}
+
+/* manage employee */
+.card {
+    width: 240px;
+}
+
+.card img {
+    /* height: 150px; */
+    aspect-ratio: 1.25/1;
+    max-width: 240px;
+    object-fit: cover;
+    object-position: top center;
+}

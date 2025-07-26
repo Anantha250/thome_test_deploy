@@ -1,10 +1,11 @@
-@extends('component.layout  ')
+@extends('layouts.layout_home')
 
 @section('content')
     <!DOCTYPE html>
-    <html lang="en">
 
     <link rel="stylesheet" href="/css/home/service/Hinspector.css">
+
+    <!-- Language Switcher จะใช้จาก navbar หลักแทน -->
 
     <section class="hero">
         <div class="bg bg1"></div>
@@ -12,12 +13,11 @@
 
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1 class="animate-text"> ตรวจสอบความเรียบร้อยของบ้านและคอนโดก่อนรับโอน<span>กรรมสิทธิ์</span></h1>
-            <p class="animate-text delay-1">บริษัทตรวจบ้านดีที่สุด อันดับ 𝟏 ที่ลูกค้าบอกต่อมากที่สุดในประเทศ
-                ให้บริการตรวจความเรียบร้อยของบ้านและคอนโดก่อนโอนกรรมสิทธิ์</p>
+            <h1 class="animate-text">{{ __('hinspector.hero_title') }}<span>{{ __('hinspector.hero_title_highlight') }}</span></h1>
+            <p class="animate-text delay-1">{{ __('hinspector.hero_subtitle') }}</p>
             <div class="hero-buttons animate-text delay-2">
-                <a href="#pricing" class="btn btn-primary">ค่าบริการ</a>
-                <a href="#report" class="btn btn-secondary">ตัวอย่างรายงาน</a>
+                <a href="#pricing" class="btn btn-primary">{{ __('hinspector.btn_pricing') }}</a>
+                <a href="#report" class="btn btn-secondary">{{ __('hinspector.btn_sample_report') }}</a>
             </div>
         </div>
 
@@ -33,12 +33,10 @@
         </div>
     </section>
 
-
-
     <section class="services" id="services">
         <div class="section-container">
             <div class="section-header">
-                <h2>ทำไมต้องเลือก ต.ตรวจบ้าน Trust Tech Team</h2>
+                <h2>{{ __('hinspector.services_title') }}</h2>
                 <div class="underline"></div>
             </div>
             <div class="container-top">
@@ -51,13 +49,11 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </div>
-                            <h3 class="card-title-top">Trust</h3>
+                            <h3 class="card-title-top">{{ __('hinspector.trust_title') }}</h3>
                         </div>
                         <div class="content-top">
-                            <p>ผู้นำด้านการตรวจบ้านอันดับต้นๆของประเทศ ที่ลูกค้าไว้วางใจให้ตรวจบ้าน
-                                โครงการแบรนด์ชั้นนำต่างๆ ในประเทศไทยมากที่สุด</p>
+                            <p>{{ __('hinspector.trust_description') }}</p>
                         </div>
-                        <a href="#" class="link-top">ดูรายละเอียดเพิ่มเติม</a>
                     </div>
 
                     <!-- Card 2 -->
@@ -69,14 +65,11 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </div>
-                            <h3 class="card-title-top">Tech</h3>
+                            <h3 class="card-title-top">{{ __('hinspector.tech_title') }}</h3>
                         </div>
                         <div class="content-top">
-                            <p>อุปกรณ์การตรวจที่ทันสมัย
-                                มีกล้องอินฟาเรดตรวจการรั่วซึมที่ตาเปล่ามองไม่เห็นและบินโดรนตรวจงานหลังคาทุกหลัง
-                                ไม่มีค่าใช้จ่ายเพิ่ม อุปกรณ์การตรวจครบครันทุกทีม</p>
+                            <p>{{ __('hinspector.tech_description') }}</p>
                         </div>
-                        <a href="#" class="link-top">ดูรายละเอียดเพิ่มเติม</a>
                     </div>
 
                     <!-- Card 3 -->
@@ -88,31 +81,24 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </div>
-                            <h3 class="card-title-top">Team</h3>
+                            <h3 class="card-title-top">{{ __('hinspector.team_title') }}</h3>
                         </div>
                         <div class="content-top">
-                            <p>เราทำงานเป็นระบบแบบมืออาชีพ ทีมช่างมากประสบการณ์และเชี่ยวชาญในการตรวจบ้าน
-                                ผ่านการเทรนนิ่งตามมาตรฐานของทางบริษัท
-                                ทีมงานของเราไม่ใช่พนักงานของบริษัทอสังหาริมทรัพย์ที่ออกมาตรวจรับงานตัวเองและไม่มีการส่งต่องานให้ซับ
-                                บริษัทตรวจบ้านเป็น "อาชีพหลัก ไม่ใช่งานเสริม"</p>
+                            <p>{{ __('hinspector.team_description') }}</p>
                         </div>
-                        <a href="#" class="link-top">ดูรายละเอียดเพิ่มเติม</a>
                     </div>
                 </div>
             </div>
 
-
             <div class="service-description">
                 <div class="text-content">
-                    <h3>บริการตรวจบ้านของเรา</h3>
-                    <p>ควบคุมมาตรฐานการตรวจโดยวิศวกรที่ได้รับการรับรองในฐานะ 𝗖𝗲𝗿𝘁𝗶𝗳𝗶𝗲𝗱
-                        𝗣𝗿𝗼𝗳𝗲𝘀𝘀𝗶𝗼𝗻𝗮𝗹 𝗜𝗻𝘀𝗽𝗲𝗰𝘁𝗼𝗿(𝗖𝗣𝗜)
-                        จากสมาคมผู้ตรวจสอบบ้านชั้นนำระดับโลกอย่าง InterNACH</p>
+                    <h3>{{ __('hinspector.service_description_title') }}</h3>
+                    <p>{{ __('hinspector.service_description_text') }}</p>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> ตรวจสอบโดยวิศวกรมืออาชีพ</li>
-                        <li><i class="fas fa-check-circle"></i> ใช้เครื่องมือทันสมัยในการตรวจสอบ</li>
-                        <li><i class="fas fa-check-circle"></i> รายงานผลละเอียดพร้อมภาพประกอบ</li>
-                        <li><i class="fas fa-check-circle"></i> คำแนะนำในการแก้ไขปัญหา</li>
+                        <li><i class="fas fa-check-circle"></i> {{ __('hinspector.service_feature_1') }}</li>
+                        <li><i class="fas fa-check-circle"></i> {{ __('hinspector.service_feature_2') }}</li>
+                        <li><i class="fas fa-check-circle"></i> {{ __('hinspector.service_feature_3') }}</li>
+                        <li><i class="fas fa-check-circle"></i> {{ __('hinspector.service_feature_4') }}</li>
                     </ul>
                 </div>
                 <div class="video-container">
@@ -129,7 +115,8 @@
 
     <section class="inspection-scope">
         <div class="inspection-container">
-            <h2 class="inspection-title">สโคปในการตรวจสอบ</h2>
+            <h2 class="inspection-title">{{ __('hinspector.inspection_scope_title') }}</h2>
+            <p class ="inspection-description">{{ __('hinspector.inspection_scope_description') }}</p>
             <div class="inspection-grid">
                 <!-- แถวบน: 3 การ์ด -->
                 <div class="inspection-row top-row">
@@ -145,15 +132,10 @@
                                 <path d="M15 9L9 6"></path>
                             </svg>
                         </div>
-                        <h3 class="inspection-card-title">ระบบไฟฟ้า</h3>
+                        <h3 class="inspection-card-title">{{ __('hinspector.electrical_title') }}</h3>
                         <div class="inspection-content">
-                            <p>ตรวจสอบระบบไฟฟ้าทั้งหมดภายในบ้าน รวมถึงสายไฟ เบรกเกอร์ ปลั๊กไฟ สวิตช์
-                                และอุปกรณ์ไฟฟ้าต่างๆ เพื่อความปลอดภัยสูงสุด</p>
-                            <ul class="inspection-list">
-                                <li>ตรวจวัดแรงดันไฟฟ้าและกระแสไฟฟ้า</li>
-                                <li>ตรวจสอบการติดตั้งสายดิน</li>
-                                <li>ตรวจสอบการรั่วไหลของกระแสไฟฟ้า</li>
-                            </ul>
+                            <p>{{ __('hinspector.electrical_description') }}</p>
+                            <a href="https://scopeofwork.thomeinspector.com/electrical" class="link-top">{{ __('hinspector.see_more_details') }}</a>
                         </div>
                     </div>
 
@@ -168,15 +150,10 @@
                                 <path d="M8 12h8"></path>
                             </svg>
                         </div>
-                        <h3 class="inspection-card-title">ระบบสุขาภิบาล</h3>
+                        <h3 class="inspection-card-title">{{ __('hinspector.sanitary_title') }}</h3>
                         <div class="inspection-content">
-                            <p>ตรวจสอบระบบประปาและสุขาภิบาลทั้งหมด รวมถึงท่อน้ำ ก๊อกน้ำ ระบบระบายน้ำ
-                                และระบบบำบัดน้ำเสีย</p>
-                            <ul class="inspection-list">
-                                <li>ตรวจสอบแรงดันน้ำและการไหลของน้ำ</li>
-                                <li>ตรวจสอบการรั่วซึมของท่อน้ำ</li>
-                                <li>ตรวจสอบการทำงานของสุขภัณฑ์</li>
-                            </ul>
+                            <p>{{ __('hinspector.sanitary_description') }}</p>
+                            <a href="https://scopeofwork.thomeinspector.com/sanitary" class="link-top">{{ __('hinspector.see_more_details') }}</a>
                         </div>
                     </div>
 
@@ -189,16 +166,11 @@
                                 <path d="M12 2L2 8l10 6 10-6-10-6z"></path>
                             </svg>
                         </div>
-                        <h3 class="inspection-card-title">งานหลังคา <span class="inspection-badge">โดรน</span>
+                        <h3 class="inspection-card-title">{{ __('hinspector.roof_title') }} <span class="inspection-badge">{{ __('hinspector.roof_badge') }}</span>
                         </h3>
                         <div class="inspection-content">
-                            <p>ตรวจสอบสภาพหลังคา การรั่วซึม และโครงสร้างหลังคาทั้งหมด
-                                ด้วยเทคโนโลยีโดรนที่ทันสมัย</p>
-                            <ul class="inspection-list">
-                                <li>บินโดรนถ่ายภาพมุมสูงเพื่อตรวจสอบหลังคา</li>
-                                <li>ตรวจสอบการติดตั้งกระเบื้องหลังคา</li>
-                                <li>ตรวจสอบรางน้ำและระบบระบายน้ำฝน</li>
-                            </ul>
+                            <p>{{ __('hinspector.roof_description') }}</p>
+                            <a href="https://scopeofwork.thomeinspector.com/roof" class="link-top">{{ __('hinspector.see_more_details') }}</a>
                         </div>
                     </div>
                 </div>
@@ -213,16 +185,11 @@
                                 <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="inspection-card-title">งานรั่วซึม <span class="inspection-badge">กล้องอินฟาเรด</span>
+                        <h3 class="inspection-card-title">{{ __('hinspector.leakage_title') }} <span class="inspection-badge">{{ __('hinspector.leakage_badge') }}</span>
                         </h3>
                         <div class="inspection-content">
-                            <p>ตรวจสอบการรั่วซึมของน้ำและความชื้นด้วยกล้องอินฟาเรด Thermal Camera
-                                ที่สามารถตรวจจับความชื้นที่ซ่อนอยู่ได้</p>
-                            <ul class="inspection-list">
-                                <li>ใช้กล้อง Thermal Camera ตรวจจับความชื้นในผนัง</li>
-                                <li>ตรวจสอบการรั่วซึมบริเวณหน้าต่างและประตู</li>
-                                <li>ตรวจสอบการรั่วซึมบริเวณห้องน้ำและห้องครัว</li>
-                            </ul>
+                            <p>{{ __('hinspector.leakage_description') }}</p>
+                            <a href="https://scopeofwork.thomeinspector.com/leakage" class="link-top">{{ __('hinspector.see_more_details') }}</a>
                         </div>
                     </div>
 
@@ -241,15 +208,10 @@
                                 <line x1="17" y1="7" x2="22" y2="7"></line>
                             </svg>
                         </div>
-                        <h3 class="inspection-card-title">งานสถาปัตยกรรม</h3>
+                        <h3 class="inspection-card-title">{{ __('hinspector.architecture_title') }}</h3>
                         <div class="inspection-content">
-                            <p>ตรวจสอบงานสถาปัตยกรรมทั้งภายนอกและภายในบ้าน รวมถึงผนัง พื้น ฝ้าเพดาน ประตู
-                                หน้าต่าง และงานตกแต่งต่างๆ</p>
-                            <ul class="inspection-list">
-                                <li>ตรวจสอบรอยแตกร้าวของผนังและพื้น</li>
-                                <li>ตรวจสอบการติดตั้งประตูและหน้าต่าง</li>
-                                <li>ตรวจสอบงานสีและวัสดุตกแต่ง</li>
-                            </ul>
+                            <p>{{ __('hinspector.architecture_description') }}</p>
+                            <a href="https://scopeofwork.thomeinspector.com/architecture" class="link-top">{{ __('hinspector.see_more_details') }}</a>
                         </div>
                     </div>
                 </div>
@@ -306,7 +268,7 @@
     <section class="process" id="process">
         <div class="container-process">
             <div class="section-header light">
-                <h2>ขั้นตอนการให้บริการของเรา</h2>
+                <h2>{{ __('hinspector.process_title') }}</h2>
                 <div class="underline"></div>
             </div>
             <div class="timeline">
@@ -315,9 +277,8 @@
                         <i class="fas fa-phone"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>1. ติดต่อนัดหมายตรวจบ้าน</h3>
-                        <p>ติดต่อกับทีมงาน ตกลงวันเวลานัดหมาย ค่าบริการผ่านทางไลน์ออฟฟิศเชียล @t.home
-                            และชำระค่าบริการเพื่อยืนยันคิวตรวจบ้าน</p>
+                        <h3>{{ __('hinspector.process_step_1_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_1_description') }}</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -325,9 +286,8 @@
                         <i class="fas fa-calendar-check"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>2. ตรวจสอบรอบแรก</h3>
-                        <p>ทีมงานเข้าดำเนินการตรวจสอบตามสโคปในการตรวจบ้านและออกรายงานการตรวจเป็นไฟล์ PDF
-                            ให้กับเจ้าของบ้านผ่านทางอีเมล (จัดส่งให้ 3-5 วัน) </p>
+                        <h3>{{ __('hinspector.process_step_2_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_2_description') }}</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -335,10 +295,8 @@
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>3. แก้ไขตามรายงานตรวจรอบแรก </h3>
-                        <p>โครงการดำเนินการแก้ไขดีเฟคตามรายงานการตรวจบ้าน และประเมินระยะเวลาในการแก้ไขเก็บงาน
-                            จากนั้นแจ้งวันที่พร้อมในการตรวจรอบที่สองให้กับเจ้าของบ้าน เพื่อทำการนัดหมายกับทาง
-                            ต.ตรวจบ้าน อีกครั้ง</p>
+                        <h3>{{ __('hinspector.process_step_3_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_3_description') }}</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -346,10 +304,8 @@
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>4. ตรวจรอบสอง</h3>
-                        <p>ทีมงานดำเนินการเข้าตรวจสอบหลังจากโครงการ/ผู้รับเหมาได้แก้ไขข้อบกพร้องตามจุดที่รายงานระบุไว้แล้วเสร็จ
-                            รีเช็กในจุดที่ต้องแก้ไขในรอบแรก พร้อมทำรายการตรวจรอบที่ 2
-                            ให้กับลูกค้าเจ้าของบ้านผ่านทางอีเมล</p>
+                        <h3>{{ __('hinspector.process_step_4_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_4_description') }}</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -357,27 +313,22 @@
                         <i class="fas fa-comments"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>5. แก้ไขตามรายงานรอบสอง</h3>
-                        <p>โครงการดำเนินการแก้ไขดีเฟคตามรายงานการตรวจรอบสอง
-                            (หากมีรายการคงค้างหรือรายการเพิ่มเติม)</p>
+                        <h3>{{ __('hinspector.process_step_5_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_5_description') }}</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-icon">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div class="timeline-content">
-                        <h3>6. ตรวจรอบถัดไป*</h3>
-                        <p>ในกรณียังมีรายการคงค้างหรือเพิ่มเติมจากการตรวจรอบสอง
-                            เจ้าของบ้านสามารถเลือกใช้บริการตรวจรอบถัดไปเพื่อเข้ารีเช็กงานอีกครั้งได้ มีค่าบริการ
-                            50% ของค่าตรวจรอบแรก </p>
+                        <h3>{{ __('hinspector.process_step_6_title') }}</h3>
+                        <p>{{ __('hinspector.process_step_6_description') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <script>
         const slides = document.querySelectorAll('.hero-slide');
@@ -431,58 +382,479 @@
         });
     </script>
 
-
-    <section id ="pricing" class="pricing-section">
-        <h2 class="pricing-heading" data-aos="fade-up">ค่าบริการตรวจบ้านและคอนโด</h2>
+    <div class="pricing-body" id="pricing">
         <div class="pricing-container">
-            <div class="pricing-card" data-aos="fade-right">
-                <img src="/img/servicecharge1.png" alt="Pricing Chart">
-            </div>
-            <div class="pricing-card-condo" data-aos="fade-right">
-                <img src="/img/condo.png" alt="Pricing Chart">
+            <h1 class="main-title">{{ __('hinspector.pricing_title') }}</h1>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="house">{{ __('hinspector.tab_house') }}</button>
+                <button class="tab-btn" data-tab="condo">{{ __('hinspector.tab_condo') }}</button>
             </div>
 
-            <div class="card-container" data-aos="fade-left">
-                <div class=" guarantee-card">
-                    <div class="card-front">
-                        <i class="fa-solid fa-clock"></i>
-                        <h3>ตรวจบ้านก่อนหมดประกัน 1 ปี</h3>
-                        <p>ตรวจสอบและเช็กรายละเอียดของบ้านก่อนรับโอนกรรมสิทธิ์</p>
+            <!-- House Content -->
+            <div class="tab-content active" id="house-content">
+                <div class="section-header-pricing">
+                    <h2>{{ __('hinspector.house_types') }}</h2>
+                </div>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr class="table-header">
+                            <th rowspan="2" class="size-col">{{ __('hinspector.size') }}</th>
+                            <th rowspan="2" class="area-col">{!! __('hinspector.usable_area') !!}</th>
+                            <th colspan="2" class="price-col">{{ __('hinspector.inspection_price') }}</th>
+                            <th rowspan="2" class="time-col">{{ __('hinspector.duration') }}</th>
+                            <th rowspan="2" class="staff-col">{{ __('hinspector.staff_count') }}</th>
+                        </tr>
+                        <tr class="table-subheader">
+                            <th class="round-col">{{ __('hinspector.round_1') }}</th>
+                            <th class="round-col">{{ __('hinspector.round_2') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row">
+                            <td class="size-cell">S</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 200</td>
+                            <td class="price-cell">8,560 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">4,280 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">3 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">3 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">M</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 400</td>
+                            <td class="price-cell">12,840 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">6,420 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">3 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">3-4 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">L</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 600</td>
+                            <td class="price-cell">17,120 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">8,560 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">4 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">XL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 800</td>
+                            <td class="price-cell">21,400 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">10,700 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">4-5 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">XXL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 1,000</td>
+                            <td class="price-cell">25,680 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">12,840 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">5 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">3XL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 1,500</td>
+                            <td class="price-cell">42,800 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">21,400 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">5-6 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            <div class="notes-section">
+                <h3 class="notes-title-vertical">{{ __('hinspector.notes') }}</h3>
+
+                <div class="notes-layout">
+                    <div class="notes-grid">
+                        <div class="note-item">
+                            <span class="note-number">1</span>
+                            <span class="note-text">{!! __('hinspector.note_1') !!}</span>
+                        </div>
+                        <div class="note-item">
+                            <span class="note-number">2</span>
+                            <span class="note-text">{!! __('hinspector.note_2') !!}</span>
+                        </div>
+                        <div class="note-item">
+                            <span class="note-number">3</span>
+                            <span class="note-text">{{ __('hinspector.note_3') }}</span>
+                        </div>
+                        <div class="note-item">
+                            <span class="note-number">4</span>
+                            <span class="note-text">{{ __('hinspector.note_4') }}</span>
+                        </div>
                     </div>
-                    <div class="card-back">
-                        <h3>ห้ามพลาด</h3>
-                        <p>
-                            ผู้รับเหมาก่อสร้างเสนอการรับประกัน 1 ปีสำหรับระบบและส่วนประกอบหลัก
-                            การตรวจสอบระบบเหล่านี้ก่อนหมดอายุการรับประกันสามารถช่วยประหยัดค่าใช้จ่ายในการซ่อมแซมในอนาคตได้
-                        </p>
+                </div>
+            </div>
+
+            <!-- Condo Content -->
+            <div class="tab-content" id="condo-content">
+                <div class="section-header-condo">
+                    <h2>{{ __('hinspector.condo_types') }}</h2>
+                </div>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr class="table-header">
+                            <th rowspan="2" class="size-col">{{ __('hinspector.size') }}</th>
+                            <th rowspan="2" class="area-col">{!! __('hinspector.usable_area') !!}</th>
+                            <th colspan="2" class="price-col">{{ __('hinspector.inspection_price') }}</th>
+                            <th rowspan="2" class="time-col">{{ __('hinspector.duration') }}</th>
+                            <th rowspan="2" class="staff-col">{{ __('hinspector.staff_count') }}</th>
+                        </tr>
+                        <tr class="table-subheader">
+                            <th class="round-col">{{ __('hinspector.round_1') }}</th>
+                            <th class="round-col">{{ __('hinspector.round_2') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row">
+                            <td class="size-cell">S</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 50</td>
+                            <td class="price-cell">5,350 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">2,675 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">2 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">2 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">M</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 100</td>
+                            <td class="price-cell">6,420 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">3,210 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">3 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">2-3 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">L</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 150</td>
+                            <td class="price-cell">7,490 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">3,745 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">3 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">2-3 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">XL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 200</td>
+                            <td class="price-cell">8,560 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">4,280 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">3 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">2-3 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">XXL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 400</td>
+                            <td class="price-cell">12,840 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">6,420 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">3-4 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="size-cell">3XL</td>
+                            <td class="area-cell">{{ __('hinspector.not_exceed') }} 600</td>
+                            <td class="price-cell">17,120 {{ __('hinspector.baht') }}</td>
+                            <td class="price-cell">8,560 {{ __('hinspector.baht') }}</td>
+                            <td class="time-cell">6 {{ __('hinspector.hours_plus') }}</td>
+                            <td class="staff-cell">
+                                <div class="staff-info">
+                                    <div class="staff-icons">
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        <svg class="staff-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="staff-count">4-5 {{ __('hinspector.people') }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="notes-section">
+                    <div class="notes-layout">
+                        <h3 class="notes-title-vertical">{{ __('hinspector.notes') }}</h3>
+                        <div class="notes-grid">
+                            <div class="note-item">
+                                <span class="note-number">1</span>
+                                <span class="note-text">{!! __('hinspector.note_1') !!}</span>
+                            </div>
+                            <div class="note-item">
+                                <span class="note-number">2</span>
+                                <span class="note-text">{!! __('hinspector.note_2') !!}</span>
+                            </div>
+                            <div class="note-item">
+                                <span class="note-number">3</span>
+                                <span class="note-text">{{ __('hinspector.note_3') }}</span>
+                            </div>
+                            <div class="note-item">
+                                <span class="note-number">4</span>
+                                <span class="note-text">{{ __('hinspector.note_4') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promotional Banner -->
+            <div class="promo-banner">
+                <div class="promo-content">
+                    <div class="promo-icons">
+                        <div class="promo-item">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/>
+                                </svg>
+                            </div>
+                            <span>{{ __('hinspector.promo_web_app') }}</span>
+                        </div>
+
+                        <div class="plus-sign">+</div>
+
+                        <div class="promo-item">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <span>{{ __('hinspector.promo_drone_infrared') }}</span>
+                        </div>
+
+                        <div class="plus-sign">+</div>
+
+                        <div class="promo-item">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                                </svg>
+                            </div>
+                            <span>{{ __('hinspector.promo_thermal_imaging') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="promo-text">
+                        <div class="text-line">{{ __('hinspector.promo_text_1') }}</div>
+                        <div class="text-line">{{ __('hinspector.promo_text_2') }}</div>
+                        <div class="text-line">{{ __('hinspector.promo_text_3') }}</div>
+                        <div class="highlight-text">{{ __('hinspector.promo_highlight') }}</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-
-
-
-    <section class="sample-reports">
+    <section class="sample-reports" id="report">
         <div class="container-reports">
             <div class="content-reports">
-                <h2>ตัวอย่างรายงานการตรวจบ้าน</h2>
-                <p>
-                    รายงานแบบไฟล์ PDF และระบบเมมเบอร์สำหรับลูกค้าต.ตรวจบ้าน ที่เข้าดูรายงานการตรวจได้ 24
-                    ชั่วโมง!!
-                </p>
+                <h2>{{ __('hinspector.sample_reports_title') }}</h2>
+                <p>{{ __('hinspector.sample_reports_description') }}</p>
                 <div class="buttons-container">
                     <button class="cta-button pdf-button" onclick="showPdfSamples()">
-                        <span class="icon">📄</span> ดูตัวอย่างรายงาน PDF
+                        <span class="icon">📄</span> {{ __('hinspector.view_pdf_samples') }}
                     </button>
                     <button class="cta-button online-button" onclick="showOnlineSamples()">
-                        <span class="icon">🌐</span> ดูตัวอย่างรายงานออนไลน์
+                        <span class="icon">🌐</span> {{ __('hinspector.view_online_samples') }}
                     </button>
                 </div>
             </div>
             <div class="devices">
-                <img src="img/report.png" alt="Reports on multiple devices" class="devices-image">
+                <img src="img/report.png" alt="{{ __('hinspector.reports_on_devices') }}" class="devices-image">
             </div>
         </div>
     </section>
@@ -490,27 +862,17 @@
     <div id="pdf-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('pdf-modal')">&times;</span>
-            <h3>ตัวอย่างรายงาน PDF</h3>
+            <h3>{{ __('hinspector.pdf_samples_title') }}</h3>
             <div class="samples-grid">
                 <div class="sample-item">
                     <div class="sample-icon pdf-icon" style="background-color: #FF5733;"></div>
-                    <p>รายงานการตรวจสอบ</p>
-                    <a href="#" class="download-link">ดาวน์โหลด PDF</a>
+                    <p>{{ __('hinspector.house_report') }}</p>
+                    <a href="https://www.dropbox.com/scl/fi/tjxe239nynmg1pta92uhc/2025.pdf?rlkey=xcsmo683gvkeza0k8soqs9wer&st=ctrnx95g&dl=1" download target="_blank" class="download-link">{{ __('hinspector.download_pdf') }}</a>
                 </div>
                 <div class="sample-item">
                     <div class="sample-icon pdf-icon" style="background-color: #33A8FF;"></div>
-                    <p>รายงานการวิเคราะห์</p>
-                    <a href="#" class="download-link">ดาวน์โหลด PDF</a>
-                </div>
-                <div class="sample-item">
-                    <div class="sample-icon pdf-icon" style="background-color: #33FF57;"></div>
-                    <p>รายงานสรุป</p>
-                    <a href="#" class="download-link">ดาวน์โหลด PDF</a>
-                </div>
-                <div class="sample-item">
-                    <div class="sample-icon pdf-icon" style="background-color: #F033FF;"></div>
-                    <p>รายงานละเอียด</p>
-                    <a href="#" class="download-link">ดาวน์โหลด PDF</a>
+                    <p>{{ __('hinspector.condo_report') }}</p>
+                    <a href="https://www.dropbox.com/scl/fi/o8ogutlr4wrq1loahq1zq/2025.pdf?rlkey=7z6nht3yv9bt6vborrryuloax&st=ksvc191d&dl=1" download target="_blank" class="download-link">{{ __('hinspector.download_pdf') }}</a>
                 </div>
             </div>
         </div>
@@ -519,34 +881,123 @@
     <div id="online-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('online-modal')">&times;</span>
-            <h3>ตัวอย่างรายงานออนไลน์</h3>
+            <h3>{{ __('hinspector.online_samples_title') }}</h3>
             <div class="samples-grid">
                 <div class="sample-item">
                     <div class="sample-icon online-icon" style="background-color: #FF5733;"></div>
-                    <p>รายงานการตรวจสอบ</p>
-                    <a href="#" class="view-link">ดูออนไลน์</a>
+                    <p>{{ __('hinspector.house_report') }}</p>
+                    <a href="https://www.dropbox.com/scl/fi/tjxe239nynmg1pta92uhc/2025.pdf?rlkey=xcsmo683gvkeza0k8soqs9wer&st=ctrnx95g&dl=0" class="view-link">{{ __('hinspector.view_online') }}</a>
                 </div>
                 <div class="sample-item">
                     <div class="sample-icon online-icon" style="background-color: #33A8FF;"></div>
-                    <p>รายงานการวิเคราะห์</p>
-                    <a href="#" class="view-link">ดูออนไลน์</a>
-                </div>
-                <div class="sample-item">
-                    <div class="sample-icon online-icon" style="background-color: #33FF57;"></div>
-                    <p>รายงานสรุป</p>
-                    <a href="#" class="view-link">ดูออนไลน์</a>
-                </div>
-                <div class="sample-item">
-                    <div class="sample-icon online-icon" style="background-color: #F033FF;"></div>
-                    <p>รายงานละเอียด</p>
-                    <a href="#" class="view-link">ดูออนไลน์</a>
+                    <p>{{ __('hinspector.condo_report') }}</p>
+                    <a href="https://www.dropbox.com/scl/fi/o8ogutlr4wrq1loahq1zq/2025.pdf?rlkey=7z6nht3yv9bt6vborrryuloax&st=ksvc191d&dl=0" class="view-link">{{ __('hinspector.view_online') }}</a>
                 </div>
             </div>
         </div>
     </div>
 
-
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get all tab buttons and content
+            const tabButtons = document.querySelectorAll(".tab-btn")
+            const tabContents = document.querySelectorAll(".tab-content")
+
+            // Add click event listeners to tab buttons
+            tabButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    const targetTab = this.getAttribute("data-tab")
+
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach((btn) => btn.classList.remove("active"))
+                    tabContents.forEach((content) => content.classList.remove("active"))
+
+                    // Add active class to clicked button
+                    this.classList.add("active")
+
+                    // Show corresponding content
+                    const targetContent = document.getElementById(targetTab + "-content")
+                    if (targetContent) {
+                        targetContent.classList.add("active")
+                    }
+                })
+            })
+
+            // Add hover effects to table rows
+            const tableRows = document.querySelectorAll(".table-row")
+            tableRows.forEach((row) => {
+                row.addEventListener("mouseenter", function () {
+                    this.style.transform = "scale(1.01)"
+                    this.style.transition = "transform 0.2s ease"
+                })
+
+                row.addEventListener("mouseleave", function () {
+                    this.style.transform = "scale(1)"
+                })
+            })
+
+            // Add smooth scrolling for better UX
+            function smoothScrollToElement(element) {
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                })
+            }
+
+            // Add animation to notes when they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1"
+                        entry.target.style.transform = "translateY(0)"
+                    }
+                })
+            }, observerOptions)
+
+            // Observe notes and promo banner
+            const animatedElements = document.querySelectorAll(".notes-section, .promo-banner")
+            animatedElements.forEach((element) => {
+                element.style.opacity = "0"
+                element.style.transform = "translateY(20px)"
+                element.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+                observer.observe(element)
+            })
+
+            // Add click animation to buttons
+            tabButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    this.style.transform = "scale(0.95)"
+                    setTimeout(() => {
+                        this.style.transform = "scale(1)"
+                    }, 150)
+                })
+            })
+
+            // Initialize with house tab active
+            const houseTab = document.querySelector('[data-tab="house"]')
+            const houseContent = document.getElementById("house-content")
+
+            if (houseTab && houseContent) {
+                houseTab.classList.add("active")
+                houseContent.classList.add("active")
+            }
+        })
+
+        // Add loading animation
+        window.addEventListener("load", () => {
+            document.body.style.opacity = "0"
+            document.body.style.transition = "opacity 0.5s ease"
+
+            setTimeout(() => {
+                document.body.style.opacity = "1"
+            }, 100)
+        })
+
         function showPdfSamples() {
             document.getElementById('pdf-modal').style.display = 'block';
             animateModal('pdf-modal');
@@ -585,7 +1036,7 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -635,16 +1086,41 @@
                     button.style.animation = 'pulse 1s';
                     setTimeout(() => {
                         button.style.animation = '';
-                    }, 1000);
+                    }, 300);
                 });
             }, 5000);
 
-            // Add click events for download and view links
             const downloadLinks = document.querySelectorAll('.download-link');
             downloadLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    alert('กำลังดาวน์โหลดไฟล์ PDF...');
+
+                    // แสดงข้อความกำลังโหลดแบบนุ่มนวล (เช่น Toast หรือข้อความใน DOM)
+                    const msg = document.createElement('div');
+                    msg.textContent = '{{ __("hinspector.downloading_pdf") }}';
+                    msg.style.position = 'fixed';
+                    msg.style.bottom = '20px';
+                    msg.style.left = '50%';
+                    msg.style.transform = 'translateX(-50%)';
+                    msg.style.background = '#333';
+                    msg.style.color = '#fff';
+                    msg.style.padding = '10px 20px';
+                    msg.style.borderRadius = '8px';
+                    msg.style.zIndex = '1000';
+                    document.body.appendChild(msg);
+
+                    // ลบข้อความหลัง 2 วินาที
+                    setTimeout(() => {
+                        msg.remove();
+                    }, 2000);
+
+                    // สั่งดาวน์โหลดทันที
+                    const a = document.createElement('a');
+                    a.href = this.href;
+                    a.setAttribute('download', '');
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
                 });
             });
 
@@ -652,61 +1128,101 @@
             viewLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    alert('กำลังเปิดรายงานออนไลน์...');
+                    window.open(this.href, '_blank');
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Add click event to tab buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    // Show corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-content`).classList.add('active');
+                });
+            });
+
+            const tableRows = document.querySelectorAll('.table-row');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.transform = 'translateY(-2px)';
+                    row.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                    row.style.transition = 'all 0.3s ease';
+                });
+
+                row.addEventListener('mouseleave', () => {
+                    row.style.transform = 'translateY(0)';
+                    row.style.boxShadow = 'none';
+                });
+            });
+
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'all 0.5s ease';
+
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 300 + (index * 150));
+            });
+        });
+
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(targetTab + '-content').classList.add('active');
+            });
+        });
     </script>
-
-
 
     <section class="app-showcase">
         <div class="container-homebutler">
             <div class="app-content">
                 <div class="app-text" data-aos="fade-right">
-                    <span class="section-subtitle">แอปพลิเคชัน</span>
-                    <h2 class="section-title">นัดหมายจองคิวตรวจบ้านกับเราได้ที่ LINE OFFICIAL ACCOUNT</h2>
-                    <p class="section-title-sub">ติดต่อง่าย สะดวก ทักหาแอดมินได้ตลอดเวลา</p>
-
-                    <ul class="app-features">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>จองบริการได้ตลอด 24 ชั่วโมง</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>ติดตามสถานะงานแบบเรียลไทม์</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>ชำระเงินออนไลน์ได้หลายช่องทาง</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>รับโปรโมชันพิเศษจากทางเรา</span>
-                        </li>
-                    </ul>
+                    <span class="section-subtitle">{{ __('hinspector.app_subtitle') }}</span>
+                    <h2 class="section-title">{{ __('hinspector.app_title') }}</h2>
+                    <p class="section-title-sub">{{ __('hinspector.app_description') }}</p>
 
                     <div class="app-download">
                         <a href="https://line.me/download" class="app-btn">
                             <i class="fab fa-apple"></i>
                             <span>
-                                <small>ดาวน์โหลดบน</small>
-                                App Store
+                                <small>{{ __('hinspector.download_on') }}</small>
+                                {{ __('hinspector.app_store') }}
                             </span>
                         </a>
                         <a href="https://line.me/download" class="app-btn">
                             <i class="fab fa-google-play"></i>
                             <span>
-                                <small>ดาวน์โหลดบน</small>
-                                Google Play
+                                <small>{{ __('hinspector.download_on') }}</small>
+                                {{ __('hinspector.google_play') }}
                             </span>
                         </a>
                     </div>
                 </div>
 
                 <div class="app-image" data-aos="fade-left">
-                    <img src="/img/lineb3.png" alt="Home Butler App">
+                    <img src="/img/lineb3.png" alt="{{ __('hinspector.home_butler_app') }}">
                 </div>
             </div>
         </div>

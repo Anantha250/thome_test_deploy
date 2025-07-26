@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class FaqTag extends Model
 {
@@ -21,7 +22,11 @@ class FaqTag extends Model
 
     public function translation($locale = null)
     {
-        $locale = $locale ?? app()->getLocale();
-        return $this->translations()->where('locale', $locale)->first();
+        $locale = $locale ?? App::getLocale();
+        $result = $this->translations->where('locale', $locale)->first();
+        if (!$result) {
+            $result = $this->translations->first();
+        }
+        return $result;
     }
 }

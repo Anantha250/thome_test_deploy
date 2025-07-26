@@ -1,48 +1,32 @@
-@extends('component.layout')
+@extends('layouts.layout_home')
 
 @section('content')
     <link rel="stylesheet" href="/css/home/index.css">
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg" id="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 id="hero-title">Loading...</h1>
-            <p id="hero-subtitle"></p>
+            <h1 id="hero-title">{{__('index.hero-title')}}</h1>
+            <p id="hero-subtitle">{{__('index.hero-subtitle')}}</p>
         </div>
     </section>
 
     <script>
-        let texts = [{
-                title: 'Thailand’s No.1',
-                subtitle: 'Home Inspection Company'
-            },
-            {
-                title: 'บริษัทตรวจบ้านอันดับ 1',
-                subtitle: 'ที่ลูกค้าบอกต่อมากที่สุดในประเทศ'
-            }
-        ];
+        // let texts = [{
+        //         title: 'Thailand’s No.1',
+        //         subtitle: 'Home Inspection Company'
+        //     },
+        //     {
+        //         title: 'บริษัทตรวจบ้านอันดับ 1',
+        //         subtitle: 'ที่ลูกค้าบอกต่อมากที่สุดในประเทศ'
+        //     }
+        // ];
         let bgImages = [
             '/img/hero-bg1.jpg',
             '/img/hero-bg3.jpg'
         ];
         let textIndex = 0;
         let bgIndex = 0;
-
-        // โหลดข้อมูลจาก backend
-        // fetch('/backend/panel/get_hero_data')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         texts = data.texts;
-        //         bgImages = data.backgrounds;
-
-        //         if (texts.length > 0 && bgImages.length > 0) {
-        //             startHeroRotation();
-        //         } else {
-        //             console.warn("ไม่พบข้อมูล Hero หรือ Background");
-        //         }
-        //     })
-        //     .catch(err => console.error("โหลดข้อมูลผิดพลาด", err));
 
         // เริ่มเปลี่ยนข้อความ + รูป
         function startHeroRotation() {
@@ -57,21 +41,19 @@
 
         // อัปเดตเนื้อหา Hero
         function updateHeroContent() {
-            document.getElementById('hero-title').innerHTML = texts[textIndex].title;
-            document.getElementById('hero-subtitle').innerText = texts[textIndex].subtitle;
+            // document.getElementById('hero-title').innerHTML = texts[textIndex].title;
+            // document.getElementById('hero-subtitle').innerText = texts[textIndex].subtitle;
             document.getElementById('hero-bg').style.backgroundImage = `url('${bgImages[bgIndex]}')`;
         }
 
         startHeroRotation();
     </script>
 
-    <!-- Services Section -->
     {{-- <section class="services">
         <div class="services-header" data-aos="fade-up">
             <h2>บริการของเรา</h2>
         </div>
         <div class="services-grid">
-            <!-- Service 1 -->
             <div class="service-card" data-aos="fade-up-right">
                 <div class="service-icon">
                     <a href="/hinspector">
@@ -81,7 +63,6 @@
                 <h3>T. Home Inspector</h3>
             </div>
 
-            <!-- Service 2 -->
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon">
                     <a href="/hinterior">
@@ -91,7 +72,6 @@
                 <h3>T. Home Interior</h3>
             </div>
 
-            <!-- Service 3 -->
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon">
                     <a href="/hconstruction">
@@ -101,7 +81,6 @@
                 <h3>T. Home Construction</h3>
             </div>
 
-            <!-- Service 4 -->
             <div class="service-card" data-aos="fade-up-left">
                 <div class="service-icon">
                     <a href="/hbutler">
@@ -111,7 +90,6 @@
                 <h3>Home Butler</h3>
             </div>
         </div>
-        <!-- Inspection Info Section -->
         <div class="wrapper" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <div class="inspection-info">
                 <div class="info-content">
@@ -126,8 +104,7 @@
                     </a>
                 </div>
                 <div class="info-image">
-                    <!-- <img src="/img/how.png" alt="Inspection Process"> -->
-                </div>
+                    </div>
             </div>
         </div>
     </section> --}}
@@ -157,127 +134,117 @@
 
 
 
-<section class="services" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
+    <section class="services" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
         <div class="services-header">
-          <h2>Our Services</h2>
+            <h2>{{__('index.services-title')}}</h2>
         </div>
         <div class="services-grid">
-          <!-- Service 1 -->
-          <div class="service-card">
-            <div class="service-icon">
-              <a href="/HOMESPECTOR/Homepage/service1.php">
-                <img src="/img/s1.png" alt="T. Home Inspector">
-              </a>
+            <div class="service-card">
+                <div class="service-icon">
+                    <a href="/HOMESPECTOR/Homepage/service1.php">
+                        <img src="/img/s1.png" alt="T. Home Inspector">
+                    </a>
+                </div>
+                <h3>{{__('index.service1-title')}}</h3>
             </div>
-            <h3>T. Home Inspector</h3>
-          </div>
 
-          <!-- Service 2 -->
-          <div class="service-card">
-            <div class="service-icon">
-              <a href="/HOMESPECTOR/Homepage/review_interior.php">
-                <img src="/img/s2.png" alt="T. Home Interior">
-              </a>
+            <div class="service-card">
+                <div class="service-icon">
+                    <a href="/HOMESPECTOR/Homepage/review_interior.php">
+                        <img src="/img/s2.png" alt="T. Home Interior">
+                    </a>
+                </div>
+                <h3>{{__('index.service2-title')}}</h3>
             </div>
-            <h3>T. Home Interior</h3>
-          </div>
 
-          <!-- Service 3 -->
-          <div class="service-card">
-            <div class="service-icon">
-              <a href="/HOMESPECTOR/Homepage/Hconstruction.php">
-                <img src="/img/s3.png" alt="T. Home Construction">
-              </a>
+            <div class="service-card">
+                <div class="service-icon">
+                    <a href="/HOMESPECTOR/Homepage/Hconstruction.php">
+                        <img src="/img/s3.png" alt="T. Home Construction">
+                    </a>
+                </div>
+                <h3>{{__('index.service3-title')}}</h3>
             </div>
-            <h3>T. Home Construction</h3>
-          </div>
 
-          <!-- Service 4 -->
-          <div class="service-card">
-            <div class="service-icon">
-              <a href="/HOMESPECTOR/Homepage/Hbulter.php">
-                <img src="/img/s4-bg.png" alt="Home Butler">
-              </a>
+            <div class="service-card">
+                <div class="service-icon">
+                    <a href="/HOMESPECTOR/Homepage/Hbulter.php">
+                        <img src="/img/s4-bg.png" alt="Home Butler">
+                    </a>
+                </div>
+                <h3>{{__('index.service4-title')}}</h3>
             </div>
-            <h3>Home Butler</h3>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const servicesSection = document.querySelector(".services");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const servicesSection = document.querySelector(".services");
 
-          const bgImages = [
-            "/HOMESPECTOR/img/hero-bg3.jpg",
-            "/HOMESPECTOR/img/inspector-bg.jpg",
-            "/HOMESPECTOR/img/interior-bg.jpg",
-            "/HOMESPECTOR/img/construction-bg.jpg",
-          ];
+            const bgImages = [
+                "/HOMESPECTOR/img/hero-bg3.jpg",
+                "/HOMESPECTOR/img/inspector-bg.jpg",
+                "/HOMESPECTOR/img/interior-bg.jpg",
+                "/HOMESPECTOR/img/construction-bg.jpg",
+            ];
 
-          let index = 0;
+            let index = 0;
 
-          function changeBackground() {
-            servicesSection.style.backgroundImage = `url(${bgImages[index]})`;
-            index = (index + 1) % bgImages.length;
-          }
-          setInterval(changeBackground, 5000);
-          changeBackground();
+            function changeBackground() {
+                servicesSection.style.backgroundImage = `url(${bgImages[index]})`;
+                index = (index + 1) % bgImages.length;
+            }
+            setInterval(changeBackground, 5000);
+            changeBackground();
         });
-      </script>
-    
+    </script>
 
-    <!-- why choose us -->
-    <section class="why-choose-us">
+
+    <section class="why-choose-us" style="overflow: hidden;">
         <h2 class="section-title aos-init aos-animate" data-translate="why-choose-us-title" data-aos="fade-down">
-            ทำไมต้องเลือก ต.ตรวจบ้าน</h2>
-        <div class="content-container"><!-- Left Text Section -->
-            <div class="text-section">
+            {{__('index.why-choose-us-title')}}</h2>
+        <div class="content-container"><div class="text-section">
                 <div class="text-item">
                     <div class="icon-box"><img src="/icon/ICON/trusted.png" alt="Trust Icon" data-aos="fade-right"
                             class="fr-fic fr-dii aos-init" style="width: 150px;"></div>
                     <div class="text-content aos-init" data-aos="fade-right">
-                        <h3 data-translate="trust-title">TRUST&nbsp;</h3>
-                        <p data-translate="trust-details">บริษัทตรวจบ้านอันดับ 1 ที่ลูกค้าบอกต่อมากที่สุดในประเทศไทย
-                            เราเป็นผู้นำด้านการตรวจบ้านอันดับต้นๆของประเทศ<br>ที่ลูกค้าไว้วางใจให้ตรวจบ้าน
-                            โครงการแบรนด์ชั้นนำต่างๆ ในประเทศ</p>
+                        <h3 data-translate="trust-title">{{__('index.trust-title')}}&nbsp;</h3>
+                        <p data-translate="trust-details">{{__('index.trust-details')}}<br>
+                        </p>
                     </div>
                 </div>
                 <div class="text-item">
                     <div class="icon-box"><img src="/icon/ICON/future.png" alt="Tech Icon" data-aos="fade-right"
                             class="fr-fic fr-dii aos-init" style="width: 148px;"></div>
                     <div class="text-content aos-init" data-aos="fade-right">
-                        <h3 data-translate="tech-title">TECH</h3>
-                        <p data-translate="tech-details">บริษัทตรวจบ้านเจ้าแรกและเจ้าเดียวที่ออกแบบและพัฒนาระบบ
-                            Web-Application ในการตรวจบ้านเป็นของตัวเอง<br>เป็นผู้นำการใช้อุปกรณ์การตรวจที่ทันสมัย เช่น
-                            กล้องอินฟาเรด และโดรนตรวจหลังคา</p>
+                        <h3 data-translate="tech-title">{{__('index.tech-title')}}</h3>
+                        <p data-translate="tech-details">{{__('index.tech-details')}}<br>
+                        </p>
                     </div>
                 </div>
                 <div class="text-item">
                     <div class="icon-box"><img src="/icon/ICON/group.png" alt="Team Icon" data-aos="fade-right"
                             class="fr-fic fr-dii aos-init" style="width: 203px;"></div>
                     <div class="text-content aos-init" data-aos="fade-right">
-                        <h3 data-translate="team-title">TEAM</h3>
-                        <p data-translate="team-details">เราทำงานเป็นระบบแบบมืออาชีพ มีประสบการณ์และเชี่ยวชาญ
-                            ทีมของเราไม่ใช่พนักงานของ บริษัทอสังหาริมทรัพย์ที่ออกมาตรวจรับงานตัวเอง
-                            และไม่มีการส่งต่องานให้ซับ</p>
+                        <h3 data-translate="team-title">{{__('index.team-title')}}</h3>
+                        <p data-translate="team-details">{{__('index.team-details')}}</p>
                     </div>
                 </div>
-            </div><!-- Right Image Section -->
-            <div class="image-section aos-init" data-aos="fade-up-left"><img
-                    src="/img/uploads_old/1743739712_carousel2.1.jpg" alt="Example Image" class="fr-fic fr-dii" loading="lazy"></div>
+            </div><div class="image-section aos-init" data-aos="fade-up-left"><img
+                    src="/img/uploads_old/1743739712_carousel2.1.jpg" alt="Example Image" class="fr-fic fr-dii"
+                    loading="lazy"></div>
         </div>
         <div class="certifications aos-init" data-aos="fade-up-right">
             <div class=" certification"><img src="/img/certified1.png" alt="T. Home Inspector" class="fr-fic fr-dii">
-                <p data-translate="certification1">ต.ตรวจบ้าน ได้รับการรับรองมาตรฐาน ISO/IEC 29110-4-3: 2018</p>
+                <p data-translate="certification1">{{__('index.certification1')}}</p>
             </div>
             <div class="certification aos-init" data-aos="fade-up-right"><img src="/img/certified2.png"
                     alt="Certified Professional Inspector" class="fr-fic fr-dii" style="width: 378px;">
-                <p data-translate="certification2">ได้รับ Certified จาก Inter NACHI</p>
+                <p data-translate="certification2">{{__('index.certification2')}}</p>
             </div>
             <div class="certification aos-init" data-aos="fade-up-right"><img src="/img/certified3.png"
                     alt="Certified Professional Inspector" class="fr-fic fr-dii" style="width: 343px;">
-                <p data-translate="certification3">ได้รับ Certified จาก Inter NACHI</p>
+                <p data-translate="certification3">{{__('index.certification3')}}</p>
             </div>
         </div>
     </section>
@@ -296,15 +263,13 @@
         <div class="cal">
             <div class="cal-item">
                 <div>
-                    <h2><i class="fas fa-calculator"></i> About the Calculator (เกี่ยวกับเครื่องคำนวณ)</h2>
-                    <p><i class="fas fa-info-circle"></i> This calculator helps you estimate the cost of home
-                        inspection services.
-                        (เครื่องคำนวณนี้ช่วยประมาณค่าบริการตรวจสอบบ้านของคุณ)</p>
-                    <p><i class="fas fa-check-circle"></i> Simply enter the required details, and the system
-                        will provide an instant estimate.
-                        (เพียงป้อนข้อมูลที่จำเป็น ระบบจะคำนวณราคาให้คุณทันที)</p>
-                    <p><i class="fas fa-phone"></i> If you have any questions, feel free to contact us.
-                        (หากมีข้อสงสัย ติดต่อเราได้ทุกเมื่อ)</p>
+                    <h2><i class="fas fa-calculator"></i> {{__('index.calculator-title')}}</h2>
+                    <p><i class="fas fa-info-circle"></i> {{__('index.calculator-description')}}
+                        </p>
+                    <p><i class="fas fa-check-circle"></i> {{ __('index.calculator-description2') }}
+                        </p>
+                    <p><i class="fas fa-phone"></i>{{ __('index.calculator-description3') }}
+                        </p>
                 </div>
                 <div class="logo-container">
                     <img src="https://img.freepik.com/free-vector/household-HOMESPECTOR-utilities-design-concept-illustrated-consumption-accounting-energetic-water-resources-isometric-vector-illustration_98292-9053.jpg?t=st=1738919465~exp=1738923065~hmac=e56ee21aff5e511ecc26ae700c498f651b595e534afce2935ef0b8959ced7d59&w=1060"
@@ -312,14 +277,12 @@
                 </div>
             </div>
 
-            <!-- Right side iframe -->
             <iframe class="cal-iframe" src="https://requestform.thomeinspector.com/calc/"></iframe>
         </div>
 
-        <!-- CTA Section -->
         <div class="cta-section" data-aos="fade-up">
             <h2>เริ่มต้นวางแผนระบบไฟฟ้าภายในบ้านของคุณ!</h2>
-            <a href="cal-electric" class="btn">เริ่มต้นคำนวณเลย</a>
+            <a href="cal-electric" class="btn">{{__('index.calculator-button')}}</a>
         </div>
     </div>
 
@@ -327,19 +290,17 @@
 
     <section class="projects" data-aos="fade-up" data-aos-duration="3000">
         <h2 class="projects-title">
-            ผลงาน
+            {{__('index.projects-title')}}
         </h2>
-        <a href="/projects_media.html" class="btn btn-firstall">ดูทั้งหมด</a>
+        <a href="/projects_media.html" class="btn btn-firstall">{{__('index.projects-see-all')}}</a>
         <div class="projects-grid" id="project-cards">
-            <!-- Cards will be dynamically populated here -->
-        </div>
+            </div>
     </section>
 
-    <!-- content -->
     <div class="carousel-container3 aos-init aos-animate" data-aos="fade-up" data-aos-anchor-placement="top-center">
         <div class="carousel-header3">
             <h2 class="carousel-title3">Content</h2>
-            <a href="/Homepage/content.php" class="btn btn-all">ดูทั้งหมด</a>
+            <a href="/Homepage/content.php" class="btn btn-all">{{__('index.see-all-articles')}}</a>
         </div>
 
         <div class="carousel3">
@@ -350,7 +311,7 @@
                         <h3>รีวิวตรวจบ้านดารา เซเลบ อินฟลู</h3>
                         <p>6 EPISODES</p>
                         <p>รีวิวการตรวจบ้านเดี่ยว พระเอกดัง!! " ตงตง เดอะสตาร์</p>
-                        <a href="/Homepage/carousel_content.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://youtube.com/playlist?list=PLIwtiszxFa5g36GIhC4Iso1UpleYvXZ5s&si=reJz6hajDkFxSJD5" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
                 <div class="carousel-slide3">
@@ -359,7 +320,7 @@
                         <h3>ต.ตรวจบ้าน x การตลาดวันละตอน</h3>
                         <p>5 EPISODES</p>
                         <p>พาดูบ้านหรู 89 ล้าน! แกรนด์ บางกอก บูเลอวาร์ด ยาร์ด บางนา</p>
-                        <a href="/Homepage/carousel_content1.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://www.youtube.com/playlist?list=PLIwtiszxFa5h-0SPx3aPGRdiUNyEa5UDg" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
                 <div class="carousel-slide3">
@@ -368,7 +329,7 @@
                         <h3>สุดพิเศษ! พาดูบ้านหรู</h3>
                         <p>3 EPISODES</p>
                         <p>รีวิวตรวจบ้านหรู 40ล้าน! CEO #บุญนําพา</p>
-                        <a href="/Homepage/carousel_content2.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://www.youtube.com/playlist?list=PLIwtiszxFa5gZ0OZsERmV-FISAeNtZNxn" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
                 <div class="carousel-slide3">
@@ -377,7 +338,7 @@
                         <h3>ตรวจบ้านก่อนโอน by ต.ตรวจบ้าน</h3>
                         <p>6 EPISODES</p>
                         <p>ตรวจบ้านก่อนโอน by ต.ตรวจบ้าน...🏡⛈️</p>
-                        <a href="/Homepage/carousel_content3.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://youtube.com/playlist?list=PLIwtiszxFa5hs10MSBr6L3Egom5r0F47j&si=FXvKwpMBhXNS09tO" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
                 <div class="carousel-slide3">
@@ -386,7 +347,7 @@
                         <h3>ประกันภัยบ้าน แฮปปี้โฮม ธนชาต</h3>
                         <p>8 EPISODES</p>
                         <p>ช่วงนี้หน้าฝน อย่ามองข้ามสิ่งนี้🏡⛈️</p>
-                        <a href="/Homepage/carousel_content4.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://www.youtube.com/playlist?list=PLIwtiszxFa5jKepWmlTC4FK7aK4bvcER1" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
                 <div class="carousel-slide3">
@@ -395,14 +356,13 @@
                         <h3>สนุก มันส์ ฮา กับช่างตรวจ</h3>
                         <p>10 EPISODES</p>
                         <p>สนุก มันส์ ฮา กับช่างตรวจ</p>
-                        <a href="/Homepage/carousel_content5.html" class="btn">ดูทั้งหมด</a>
+                        <a href="https://youtube.com/playlist?list=PLIwtiszxFa5g7IvwysRH4hXO0dJjoRFWn&si=3wzVLweorZkdnvs2" class="btn">{{__('index.see-all-articles')}}</a>
                     </div>
                 </div>
             </div>
 
             <div class="carousel-thumbnails" id="carousel-thumbnails">
                 <button class="prev-btn" onclick="changeSlide(-1)">&lt;</button>
-                <!-- Thumbnails will be added here -->
                 <div class="thumbnail active" onclick="showSlide(0)"><img src="/img/thumbnail4.jpg" alt="Thumb 1">
                 </div>
                 <div class="thumbnail" onclick="showSlide(1)"><img src="/img/uploads_old/carousel_thumb1.jpg"
@@ -482,81 +442,41 @@
 
         //             totalSlides = data.length;
         //         });
-        // 
+        //
     </script>
 
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch("/backend/panel/get_index_reviews")
-                .then(res => res.json())
-                .then(data => {
-                    // Set review title and subtitle (allow HTML from Froala)
-                    // document.getElementById('review-title').innerText = data.text.title;
-                    document.getElementById('review-subtitle').innerHTML = data.text.subtitle;
-
-                    // Generate stat boxes
-                    const statsContainer = document.getElementById('stats-container');
-                    data.stats.forEach(stat => {
-                        const box = document.createElement("div");
-                        box.className = "stat-box";
-                        box.innerHTML = `
-                            <img src="${stat.icon_url}" alt="${stat.label}">
-                            <h2 id="stat-${stat.id}">0</h2>
-                            <p>${stat.label}</p>
-                        `;
-                        statsContainer.appendChild(box);
-                    });
-
-                    // Animate numbers only when in view
-                    let animated = false;
-                    const animateValue = (id, end, duration) => {
-                        let start = 0;
-                        let increment = Math.ceil(end / (duration / 50));
-                        const element = document.getElementById(id);
-                        const interval = setInterval(() => {
-                            start += increment;
-                            if (start >= end) {
-                                start = end;
-                                clearInterval(interval);
-                            }
-                            element.textContent = start.toLocaleString();
-                        }, 50);
-                    };
-
-                    window.addEventListener("scroll", () => {
-                        const section = document.getElementById("stats-section");
-                        const offset = section.offsetTop;
-
-                        if (!animated && window.scrollY + window.innerHeight > offset) {
-                            data.stats.forEach(stat => {
-                                animateValue(`stat-${stat.id}`, stat.final_value, stat
-                                    .animation_duration);
-                            });
-                            animated = true;
-                        }
-                    });
-                })
-                .catch(err => {
-                    console.error("โหลดข้อมูลรีวิวผิดพลาด:", err);
-                });
-        });
-    </script> -->
-
-
     <section class="articles" data-aos="fade-up" data-aos-delay="100">
-        <h2 class="articles-title">Latest Articles</h2>
-        <a href="/articles" class="btn btn-firstall">ดูทั้งหมด</a>
-        <div class="articles-grid">
-            <!-- Dynamically populated -->
+        <h2 class="articles-title">{{__('index.latest-articles-title')}}</h2>
+        <a href="/article" class="btn btn-firstall">{{__('index.see-all-articles')}}</a>
+        <div class="review-cards">
+            @if (isset($latestArticles) && count($latestArticles) > 0)
+                @foreach ($latestArticles as $article)
+                    <div class="new-card">
+                        <a href="/article/detail?news_id={{ $article->id }}"><img
+                                src="{{ $article->translation->coverPageImg }}" alt="" loading="lazy"></a>
+                        <a href="/article/detail?news_id={{ $article->id }}"
+                            class="new-card-title">{{ $article->translation->title }}</a>
+                        <div class="new-card-tags">
+                            @foreach ($article->tags as $tag)
+                                <a href="/article?tag={{ $tag->name }}">{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                        <div>
+                            <span
+                                class="upload-date">{{ \Carbon\Carbon::parse($article->created_at)->locale(app()->getlocale())->isoFormat('D-MM-YYYY') }}
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </section>
 
-    <!-- newapp -->
     <div class="container-newapp aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000">
         <div class="header-newapp">
             <h1>New</h1>
-            <h2>Application ตรวจบ้านด้วยตัวเอง</h2>
-            <p>ตรวจบ้านด้วยตัวเอง พร้อมออกรายงานในตัว ตรวจไม่เป็นก็มีคลิปสอนให้ภายในแอป</p>
+            <h2>{{__('index.newapp-title')}}</h2>
+            <p>{{__('index.newapp-description')}}</p>
         </div>
         <div class="content-newapp">
             <div class="app-preview">
@@ -565,7 +485,7 @@
             </div>
             <div class="main-btn">
                 <button>
-                    <a href="https://liff.line.me/2005695449-36Xrdj94">ใช้งานฟรี!</a>
+                    <a href="https://liff.line.me/2005695449-36Xrdj94">{{__('index.newapp-button')}}</a>
                 </button>
             </div>
         </div>
@@ -573,11 +493,9 @@
 
 
 
-    <!-- Reviews Section -->
     <section class="stats-section" id="stats-section">
         <div class="content-wrapper">
             <div class="text-content">
-                <!-- <h2 class="section-title" id="review-title">Loading...</h2> -->
                 <p class="section-subtitle" id="review-subtitle">Please wait...</p>
             </div>
             <div class ="trustindex">
@@ -587,16 +505,20 @@
 
             <div class="insight-metrics animate-text delay-3">
                 <div class="metric-box">
-                    <span class="metric-number" data-target="1250">1250</span><span class="metric-unit">+</span>
+                    <span class="metric-number" data-target="{{ $var['dev'] }}"></span><span class="metric-unit">developer</span>
                     <p class="metric-label">ตรวจบ้านมาแล้วกว่า</p>
                 </div>
                 <div class="metric-box">
-                    <span class="metric-number" data-target="99.9">99.9</span><span class="metric-unit">%</span>
-                    <p class="metric-label">ความพึงพอใจ</p>
+                    <span class="metric-number" data-target="{{ $var['project'] }}"></span><span class="metric-unit">โครงการ</span>
+                    <p class="metric-label">ตรวจบ้านมาแล้วกว่า</p>
                 </div>
                 <div class="metric-box">
-                    <span class="metric-number" data-target="10">10</span><span class="metric-unit">+ปี</span>
-                    <p class="metric-label">ประสบการณ์กว่า</p>
+                    <span class="metric-number" data-target="{{ $var['house'] }}"></span><span class="metric-unit">หลัง</span>
+                    <p class="metric-label">ตรวจบ้านมาแล้วกว่า</p>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number" data-target="{{ $var['satisfaction'] }}"></span><span class="metric-unit">%</span>
+                    <p class="metric-label">ความพึงพอใจ</p>
                 </div>
 
                 <div class="metrics-extra" id="stats-container"></div>
@@ -641,97 +563,102 @@
 
     </section>
 
-    <!-- faq Section -->
     <section class="faq" id="faq">
         <div class="faq-container">
-            <h1 class="faq-title">คำถามที่พบบ่อย</h1>
+            <h1 class="faq-title">{{__('index.faq-title')}}</h1>
             <div class="faq-content">
                 <aside class="faq-menu">
                     <ul id="faq-category-list">
-                        <li class="active" data-category="all" onclick="filterFAQ('all')">ทั้งหมด</li>
+                        <li class="active" data-category="all" onclick="filterFAQ('all')">{{__('index.faq-category-all')}}</li>
                     </ul>
                 </aside>
 
                 <div class="faq-questions" id="faq-content">
+
+                    @if (isset($faqs) && count($faqs) > 0)
+                        @foreach ($faqs as $faq)
+                            <div> {{ $faq->translation->question }}</div>
+                            <div> {{ $faq->translation->answer }}</div>
+                            <div>
+                                @foreach ($faq->tags as $tag)
+                                    <div> {{ $tag->name }}</div>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
-
-
         </div>
-    </section>
 
+        <script>
+            function slugify(str) {
+                return str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+            }
 
-    <script>
-        function slugify(str) {
-            return str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-        }
+            function toggleAnswer(button) {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector(".icon");
+                const isVisible = answer.style.display === "block";
+                answer.style.display = isVisible ? "none" : "block";
+                icon.textContent = isVisible ? "+" : "−";
+            }
 
-        function toggleAnswer(button) {
-            const answer = button.nextElementSibling;
-            const icon = button.querySelector(".icon");
-            const isVisible = answer.style.display === "block";
-            answer.style.display = isVisible ? "none" : "block";
-            icon.textContent = isVisible ? "+" : "−";
-        }
+            function filterFAQ(category) {
+                document.querySelectorAll("#faq-category-list li").forEach(li => li.classList.remove("active"));
+                document.querySelector(`#faq-category-list li[data-category="${category}"]`)?.classList.add("active");
 
-        function filterFAQ(category) {
-            document.querySelectorAll("#faq-category-list li").forEach(li => li.classList.remove("active"));
-            document.querySelector(`#faq-category-list li[data-category="${category}"]`)?.classList.add("active");
+                document.querySelectorAll(".faq-item").forEach(item => {
+                    item.style.display = category === "all" || item.getAttribute("data-category") === category ?
+                        "block" : "none";
+                });
+            }
 
-            document.querySelectorAll(".faq-item").forEach(item => {
-                item.style.display = category === "all" || item.getAttribute("data-category") === category ?
-                    "block" : "none";
-            });
-        }
+            // Fetch FAQs
+            window.addEventListener("DOMContentLoaded", () => {
+                const faqs = @json($faqs);
+                const categories = new Set();
+                const faqContent = document.getElementById("faq-content");
+                const categoryList = document.getElementById("faq-category-list");
+                faqContent.innerHTML = "";
 
-        // Fetch FAQs
-        window.addEventListener("DOMContentLoaded", () => {
-            fetch("/api/faq/get_faqs")
-                .then(res => res.json())
-                .then(data => {
-                    const categories = new Set();
-                    const faqContent = document.getElementById("faq-content");
-                    const categoryList = document.getElementById("faq-category-list");
-                    faqContent.innerHTML = "";
+                const grouped = {};
+                faqs.forEach(faq => {
+                    faq.tags.forEach(cat => {
+                        categories.add(cat.name);
+                        if (!grouped[cat.name]) grouped[cat.name] = [];
+                        grouped[cat.name].push(faq);
+                    })
+                });
 
-                    const grouped = {};
-                    data.forEach(faq => {
-                        const cat = faq.category;
-                        categories.add(cat);
-                        if (!grouped[cat]) grouped[cat] = [];
-                        grouped[cat].push(faq);
-                    });
+                categories.forEach(cat => {
+                    const li = document.createElement("li");
+                    li.textContent = cat;
+                    li.setAttribute("data-category", cat);
+                    li.onclick = () => filterFAQ(cat);
+                    categoryList.appendChild(li);
+                });
 
-                    categories.forEach(cat => {
-                        const li = document.createElement("li");
-                        li.textContent = cat;
-                        li.setAttribute("data-category", cat);
-                        li.onclick = () => filterFAQ(cat);
-                        categoryList.appendChild(li);
-                    });
-
-                    for (const cat in grouped) {
-                        grouped[cat].forEach(faq => {
-                            const item = document.createElement("div");
-                            item.className = "faq-item";
-                            item.setAttribute("data-category", cat);
-                            item.innerHTML = `
+                for (const cat in grouped) {
+                    grouped[cat].forEach(faq => {
+                        const item = document.createElement("div");
+                        item.className = "faq-item";
+                        item.setAttribute("data-category", cat);
+                        item.innerHTML = `
                                 <button class="faq-question" onclick="toggleAnswer(this)">
                                     <span class="icon">+</span>
-                                    <span class="question-text">${faq.question}</span>
+                                    <span class="question-text">${faq.translation.question}</span>
                                 </button>
-                                <div class="faq-answer"><p>${faq.answer}</p></div>
+                                <div class="faq-answer"><p>${faq.translation.answer}</p></div>
                                 `;
-                            faqContent.appendChild(item);
-                        });
-                    }
+                        faqContent.appendChild(item);
+                    });
+                }
 
 
-                    filterFAQ("all");
-                })
-                .catch(err => console.error("โหลด FAQ ไม่สำเร็จ:", err));
-        });
-    </script>
+                filterFAQ("all");
+            });
+        </script>
+    </section>
 
 
     <section class="elfsight" data-aos="fade-up">
@@ -743,154 +670,3 @@
     <script defer async src='https://cdn.trustindex.io/loader-feed.js?d4242bb455c262618f46fda8250'></script>
     <script></script>
 @endsection
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/x-icon" href="/img/favicon1.png">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap">
-    <link rel="stylesheet" href="/CSS/index.css">
-    <title>Header Design</title>
-</head> --}}
-
-{{-- <body>
-    <div class="content-box">
-        <div class="content-box">
-
-
-
-
-
-
-
-
-            <footer class="footer">
-                <div class="footer-container">
-                    <!-- Left Section: Social Media & Branding -->
-                    <div class="footer-left">
-                        <!-- <h2>HomeInspector</h2> -->
-                        <img src="/img/footer_logo.png" alt="HomeInspector Logo" class="footer-logo">
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/t.homeinspector/" target="_blank"><img
-                                    src="/icon/ICON/Fb.png" alt="Facebook"></a>
-                            <a href="https://www.instagram.com/t.homeinspector/" target="_blank"><img
-                                    src="/icon/ICON/IG.png" alt="Instagram"></a>
-                            <a href="https://page.line.me/t.home?openQrModal=true" target="_blank"><img
-                                    src="/icon/ICON/line.png" alt="Line"></a>
-                            <a href="https://www.tiktok.com/@thomeinspector" target="_blank"><img
-                                    src="/icon/ICON/Tiktok.png" alt="TikTok"></a>
-                            <a href="https://www.youtube.com/channel/UC1BPUCVPBW4-ml7MrxQWjug" target="_blank"><img
-                                    src="/icon/ICON/YB.png" alt="YouTube"></a>
-                        </div>
-                    </div>
-
-                    <!-- Center Section: Company -->
-                    <div class="footer-center">
-                        <h2>เกี่ยวกับเรา <span class="toggle-icon">+</span></h2>
-                        <ul>
-                            <li><a href="/ourstory">ประวัติของเรา</a></li>
-                            <li><a href="/ourteam">ทีมงานของเรา</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Right Section: Our Services -->
-                    <div class="footer-right">
-                        <h2>บริการของเรา <span class="toggle-icon">+</span></h2>
-                        <ul>
-                            <li><a href="/Hinspector">ต.ตรวจบ้าน</a></li>
-                            <li><a href="/Hinterior">ต.ตงแต่ง</a></li>
-                            <li><a href="/Hconstruction">ต.เติม</a></li>
-                            <li><a href="/Hbulter">H.Bulter</a></li>
-                            <li><a href="/cal-electric">ตรวจสอบระบบไฟฟ้า</a></li>
-                            <li><a href="/app-inspector">ตรวจบ้านเอง</a></li>
-                            <li><a href="/checklist">เทียบสเปกบ้าน</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Extra Section: Customer Help -->
-                    <div class="footer-help">
-                        <h2>ช่วยเหลือ <span class="toggle-icon">+</span></h2>
-                        <ul>
-                            <li><a href="/index#faq">คำถามที่พบบ่อย (FAQ)</a></li>
-                            <li><a href="/joinwithus">รวมงานกับเรา</a></li>
-                            <li><a href="/promotion">โปรโมชั่น</a></li>
-                            <li><a href="/Contactus">ติดต่อเรา</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Payment Logos -->
-                    <div class="footer-payment">
-                        <h2>ชำระเงินด้วย</h2>
-                        <div class="payment-logos">
-                            <img src="/img/visacard.png" alt="Visa">
-                            <img src="/img/Mastercard.webp" alt="MasterCard">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer Bottom -->
-                <div class="footer-bottom">
-                    <p>© 2024 HomeInspector. All Rights Reserved.</p>
-                </div>
-            </footer>
-
-
-        </div>
-    </div>
-
-    <script src="/JS/Toggle_Navbar.js"></script>
-    <script src="/JS/dropdown.js"></script>
-    <script src="/JS/pull_articles.js"></script>
-    <!-- <script src="/JS/carousel.js"></script>
-    <script src="/JS/carousel2.js"></script>
-    <script src="/JS/carousel4.js"></script> -->
-    <!-- <script src="/JS/stats-section.js"></script> -->
-    <script src="/JS/pull_project.js"></script>
-    <!-- <script src="/JS/faq.js"></script> -->
-    <script src="/JS/search_ham.js"></script>
-    <script src="/JS/footer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const heroBg = document.querySelector(".hero-bg");
-
-            let scale = 1;
-            let growing = true;
-
-            function animateBackground() {
-                if (growing) {
-                    scale += 0.005; // Slowly zoom in
-                    if (scale >= 1.1) growing = false;
-                } else {
-                    scale -= 0.005; // Slowly zoom out
-                    if (scale <= 1) growing = true;
-                }
-                heroBg.style.transform = `scale(${scale})`;
-                requestAnimationFrame(animateBackground);
-            }
-
-            animateBackground();
-        });
-    </script>
-
-</body>
-
-</html> --}}

@@ -1,0 +1,140 @@
+.service-btn.blue-theme {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+
+.service-btn.orange-theme {
+    background: linear-gradient(45deg, #e67e22, #d35400);
+    color: white;
+}
+
+.service-btn.green-theme {
+    background: linear-gradient(45deg, #27ae60, #16a085);
+    color: white;
+}
+
+.service-btn.purple-theme {
+    background: linear-gradient(45deg, #8e44ad, #6c3483);
+    color: white;
+}
+
+.service-btn.red-theme {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.service-btn.gray-theme {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+    color: white;
+}
+
+
+/* filter btn */
+.blue-theme .filter-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #2980b9;
+}
+
+.orange-theme .filter-btn.active {
+    background: #e67e22;
+    color: white;
+    border-color: #d35400;
+}
+
+.green-theme .filter-btn.active {
+    background: #27ae60;
+    color: white;
+    border-color: #16a085;
+}
+
+.purple-theme .filter-btn.active {
+    background: #8e44ad;
+    color: white;
+    border-color: #6c3483;
+}
+
+.red-theme .filter-btn.active {
+    background: #e74c3c;
+    color: white;
+    border-color: #c0392b;
+}
+
+.gray-theme .filter-btn.active {
+    background: #95a5a6;
+    color: white;
+    border-color: #7f8c8d;
+}
+
+
+
+
+
+/* Theme-specific department lines */
+/* .extension .department-line {
+    background: linear-gradient(45deg, #e67e22, #d35400);
+}
+
+.decoration .department-line {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+} */
+
+.blue-theme .department-line {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+}
+
+.orange-theme .department-line {
+    background: linear-gradient(45deg, #e67e22, #d35400);
+}
+
+.green-theme .department-line {
+    background: linear-gradient(45deg, #27ae60, #16a085);
+}
+
+.purple-theme .department-line {
+    background: linear-gradient(45deg, #8e44ad, #6c3483);
+}
+
+.red-theme .department-line {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+}
+
+.gray-theme .department-line {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+}
+
+
+
+
+/* Theme-specific badges */
+.blue-theme .department-badge {
+    background: #3498db;
+}
+
+.orange-theme .department-badge {
+    background: #e67e22;
+}
+
+.green-theme .department-badge {
+    background: #27ae60;
+}
+
+.purple-theme .department-badge {
+    background: #8e44ad;
+}
+
+.red-theme .department-badge {
+    background: #e74c3c;
+}
+
+.gray-theme .department-badge {
+    background: #95a5a6;
+}
+
+/* .extension .department-badge {
+    background: #e67e22;
+}
+
+.decoration .department-badge {
+    background: #95a5a6;
+} */

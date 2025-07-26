@@ -881,7 +881,7 @@ header {
     color: var(--font-color);
     text-align: center;
     width: 100vw;
-    height: 45vh;
+    height: min(fit-content, 45vh);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1100,6 +1100,7 @@ header {
 /* General Section Styling */
 .why-choose-us {
     max-width: min(1200px, 100vw);
+    height: fit-content;
     margin: 0 auto;
     padding: 40px 20px;
 }
@@ -1317,7 +1318,7 @@ header {
 .cal {
     display: flex;
     justify-content: space-between;
-    height: calc(100vh - 100px);
+    height: fit-content;
     /* align-items: stretch; */
     gap: 30px;
     background: #f9f9f9;
@@ -1330,6 +1331,7 @@ header {
 /* Left Side */
 .cal-item {
     flex: 1;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1893,47 +1895,172 @@ button.next-btn:hover {
     background-color: var(--seconadry-color);
 }
 
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-
-}
-
-.articles-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.articles a {
+.review-cards {
+    display: flex;
+    gap: 50px 30px;
+    justify-content: center;
+    flex-wrap: wrap;
     text-decoration: none;
-    color: #000000;
-    font-weight: bold;
-    font-size: 18px;
 }
 
-
-.articles-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+.new-card {
+    width: 30%;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: left;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
-.articles-card img {
+.new-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.new-card img {
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    border-radius: 10px;
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.new-card a {
+    text-decoration: none;
+    color: inherit;
+    height: fit-content;
+}
+
+.new-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-left: 5px;
+}
+
+.new-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: 5px;
+}
+
+.new-card-tags a {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .upload-date {
-    font-size: 0.9em;
-    color: #777;
-    text-align: right;
-    white-space: nowrap;
-    margin-left: 10px;
+    color: #888;
+    margin-left: 5px;
+}
+
+@media (max-width: 968px) {
+    .new-card {
+        width: 45%;
+    }
+}
+
+
+.card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+/* Image Styling */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Card Text */
+.card p {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+
+/* Dark Overlay Effect Using ::before */
+.card::before {
+    content: "ดูเพิ่มเติม";  /* "View More" in Thai */
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+
+.card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding: 15px;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.card .overlay p {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: white !important;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
 }
 
 /* newapp */

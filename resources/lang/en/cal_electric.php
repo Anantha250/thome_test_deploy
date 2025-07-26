@@ -1,0 +1,27 @@
+<?php
+
+return [
+    "cal_title" => "About the Calculator",
+    "cal_subtitle1" => "This calculator helps estimate the inspection service fee for your home.",
+    "cal_subtitle2" => "Just enter the required information and the system will calculate the price instantly.",
+    "cal_subtitle3" => "If you have any questions, feel free to contact us anytime.",
+    "why_cal_title" => "Why calculate the size of electrical appliances in your home?",
+    "why_cal_desc" => "Calculating the size of electrical appliances helps you manage energy efficiently and reduce electricity costs.",
+    "why_cal_btn" => "Calculate electricity cost now",
+    "section_title" => "💡 Why is calculating the size of electrical appliances important?",
+    "section_desc" => "Using electrical appliances without proper calculation may cause several problems such as overload, higher electricity bills, or even short circuits.",
+    "card1_title" => "🔌 Prevent Overload",
+    "card1_desc" => "Too many appliances on the same circuit can cause power outages or heat buildup.",
+    "card2_title" => "⚡ Reduce Electricity Costs",
+    "card2_desc" => "Choosing the right appliances helps lower your bills and use energy efficiently.",
+    "card3_title" => "🏡 Increase Home Safety",
+    "card3_desc" => "A well-calculated electrical system reduces the risk of electric shock or fire from overloading.",
+    "card4_title" => "🔋 Choose the Right Wires and Equipment",
+    "card4_desc" => "Using appropriate wires and breakers ensures a stable and safe electrical system.",
+    "card5_title" => "🌍 Reduce Environmental Impact",
+    "card5_desc" => "Efficient electricity use helps reduce greenhouse gas emissions and lessens the burden on the planet.",
+    "card6_title" => "💡 Better Use of Renewable Energy",
+    "card6_desc" => "If you have solar panels or renewable energy, calculating your energy helps maximize usage.",
+    "cta_title" => "Start planning your home's electrical system!",
+    "cta_btn" => "Contact an Expert",
+];
